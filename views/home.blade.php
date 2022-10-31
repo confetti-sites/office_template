@@ -1,5 +1,6 @@
 @extends('page')
 @section('home')
+    
     @php($banner = section('banner'))
     <section class="new-video-container home">
         <div class="video banner home">
