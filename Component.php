@@ -13,30 +13,35 @@ use Illuminate\Support\MultipleItemsFoundException;
 use Illuminate\Support\Traits\EnumeratesValues;
 
 /**
- * @return \Section
+ * @return \Component
  */
-function section(string $key): \Section
+function section(string $key): \Component
 {
     $faker     = \Faker\Factory::create('lorem');
     $faker->addProvider(new Faker\Provider\Lorem($faker));
-    return new Section($faker, $key);
+    return new Component($faker, $key);
+};
+
+function on($component): \Component
+{
+    return $component;
+};
+
+function group($key): \Component
+{
+    $faker     = \Faker\Factory::create('lorem');
+    $faker->addProvider(new Faker\Provider\Lorem($faker));
+    return new Component($faker, $key);
 };
 
 /**
- * @return \Section
+ * @return \Component
  */
-function bySection(string $key): \Section
+function bySection(string $key): \Component
 {
 };
 
-/**
- * @return string
- */
-function need(string $key, string $default): string
-{
-};
-
-class Section
+class Component
 {
     private string $key;
 
@@ -129,7 +134,7 @@ class Section
     {
     }
 
-    /** @return \Section[] */
+    /** @return \Component[] */
     public function multiple(string $key): Multiple
     {
         return new Multiple($this->faker, "$this->key.$key");
@@ -157,7 +162,7 @@ final class Multiple implements ArrayAccess, Countable, IteratorAggregate
         while ($i <= $amount) {
             $i++;
 
-            $this->items[] = new Section($this->faker, "$component->key");
+            $this->items[] = new Component($this->faker, "$component->key");
         }
     }
 
@@ -166,25 +171,25 @@ final class Multiple implements ArrayAccess, Countable, IteratorAggregate
         return $this;
     }
 
-    /** @return \Section[] */
+    /** @return \Component[] */
     public function min(int $min): self
     {
         return $this;
     }
 
-    /** @return \Section[] */
+    /** @return \Component[] */
     public function max(int $max): self
     {
         return $this;
     }
 
-    /** @return \Section[] */
+    /** @return \Component[] */
     public function bulkUpload(string $keyToUpload): self
     {
         return $this;
     }
 
-    /** @return \Section[] */
+    /** @return \Component[] */
     public function where(string $keyToCompare, string $operatorOrValue, string $value = null): self
     {
     }
