@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+namespace Confetti\Components;
+
+use IteratorAggregate;
+
 return new class implements IteratorAggregate {
     /**
      * The items contained in the collection.

@@ -2,16 +2,21 @@
 
 declare(strict_types=1);
 
-return new class extends ComponentStandard {
-    public function result(array $arguments, bool $fake): string
-    {
-        $component = (new \App\Services\ComponentRepository())->find($this->key);
+namespace Confetti\Components;
 
-        if ($component->default != '') {
-            return $component->default;
+use Confetti\Helpers\ComponentStandard;
+
+return new class extends ComponentStandard {
+    public function get(): string
+    {
+        $component = $this->componentRepository->find($this->key);
+        if ($component->hasDecorations('default')) {
+            return $component->getDecoration('default')->data['value'];
         }
 
-        $haystack = strtolower($component->key . $component->label);
+        $label = $component->getDecoration('label')?->data['value'] ?? '';
+
+        $haystack = strtolower($component->key . $label);
         if (str_contains($haystack, 'address')) {
             return $this->faker->address();
         }
@@ -21,7 +26,7 @@ return new class extends ComponentStandard {
         if (str_contains($haystack, 'last') && str_contains($haystack, 'name')) {
             return $this->faker->lastName();
         }
-        if (str_contains($haystack, 'company') || str_contains($haystack, 'company') || str_contains($haystack, 'business')) {
+        if (str_contains($haystack, 'company') || str_contains($haystack, 'business')) {
             return $this->faker->company();
         }
         if (str_contains($haystack, 'mail')) {
@@ -37,13 +42,12 @@ return new class extends ComponentStandard {
             return $this->faker->name();
         }
 
-        $max = $component->maxApply ? $component->max : 255;
-        $min = max($component->min, 6);
+        $max = $component->getDecoration('max') ?: 255;
+        $min = max($component->getDecoration('min'), 6);
         if ($min > $max) {
             $min = 1;
         }
 
         return $this->faker->text(random_int($min, $max));
     }
-
 };
