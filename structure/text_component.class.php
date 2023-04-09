@@ -38,6 +38,7 @@ return new class extends ComponentStandard {
         if (str_contains($haystack, 'city')) {
             return $this->faker->city();
         }
+
         if (str_contains($haystack, 'name')) {
             return $this->faker->name();
         }

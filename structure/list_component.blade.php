@@ -11,4 +11,3 @@
 
     ))->toJson();
 @endphp
-

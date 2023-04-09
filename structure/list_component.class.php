@@ -4,17 +4,25 @@ declare(strict_types=1);
 
 namespace Confetti\Components;
 
+use Confetti\Helpers\ComponentRepository;
+use Confetti\Helpers\ContentRepository;
+use Faker\Generator;
 use IteratorAggregate;
 
 return new class implements IteratorAggregate {
     /**
      * The items contained in the collection.
      *
-     * @var array<string, \Map>
+     * @var array<string, Map>
      */
-    protected $items = [];
+    protected array $items = [];
 
-    public function __construct(protected \Faker\Generator $faker, private string $key)
+    public function __construct(
+        protected string $key,
+        protected ComponentRepository $componentRepository,
+        protected ContentRepository $contentRepository,
+        protected Generator $faker,
+    )
     {
         $component = (new \App\Services\ComponentRepository())->find($this->key);
 
@@ -99,3 +107,4 @@ return new class implements IteratorAggregate {
         unset($this->items[$key]);
     }
 };
+

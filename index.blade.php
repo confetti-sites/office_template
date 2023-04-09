@@ -9,3 +9,4 @@ title:
 <br>{{ $page->text('firstname') }}
 <br>{{ $page->text('lastname') }}
 <br>{{ $page->text('phone') }}
+
