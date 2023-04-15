@@ -1,12 +1,10 @@
-@php($page = section('page'))
+@php
+    $isAdmin = str_starts_with(request()->uri(), '/admin');
 
-title:
-<h1>
-    {{ $page->text('title') }}
-</h1>
+@endphp
 
-<br>{{ $page->text('name') }}
-<br>{{ $page->text('firstname') }}
-<br>{{ $page->text('lastname') }}
-<br>{{ $page->text('phone') }}
-
+@if($isAdmin)
+    @include('admin.index')
+@else
+    @include('view.homepage')
+@endif

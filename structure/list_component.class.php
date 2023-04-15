@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Confetti\Components;
 
-use Confetti\Helpers\ComponentRepository;
+use ArrayIterator;
+use Confetti\Helpers\ComponentStore;
 use Confetti\Helpers\ContentRepository;
 use Faker\Generator;
 use IteratorAggregate;
@@ -17,24 +18,32 @@ return new class implements IteratorAggregate {
      */
     protected array $items = [];
 
+    /** @noinspection DuplicatedCode */
     public function __construct(
-        protected string $key,
-        protected ComponentRepository $componentRepository,
+        protected string            $key,
+        protected ComponentStore    $componentStore,
         protected ContentRepository $contentRepository,
-        protected Generator $faker,
+        protected Generator         $faker,
     )
     {
-        $component = (new \App\Services\ComponentRepository())->find($this->key);
+        $this->key .= '~';
+        $component = $this->componentStore->find($this->key);
 
-        $max = $component->maxApply ? $component->max : 100;
+        $max = $component->getDecoration('max')['value'] ?? 100;
+        $min = $component->getDecoration('min')['value'] ?? 1;
 
-        $amount = random_int($component->min, $max);
+        $amount = random_int($min, $max);
 
         $i = 1;
         while ($i <= $amount) {
             $i++;
 
-            $this->items[] = new Component($this->faker, $component->key);
+            $this->items[] = new Map(
+                $this->key,
+                $this->componentStore,
+                $this->contentRepository,
+                $faker,
+            );
         }
     }
 
@@ -43,7 +52,7 @@ return new class implements IteratorAggregate {
      *
      * @return \ArrayIterator<string, Map>
      */
-    public function getIterator(): Traversable
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->items);
     }

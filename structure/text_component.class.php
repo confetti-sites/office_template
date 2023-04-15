@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection DuplicatedCode */
 
 declare(strict_types=1);
 
@@ -9,7 +9,7 @@ use Confetti\Helpers\ComponentStandard;
 return new class extends ComponentStandard {
     public function get(): string
     {
-        $component = $this->componentRepository->find($this->key);
+        $component = $this->componentStore->find($this->key);
         if ($component->hasDecorations('default')) {
             return $component->getDecoration('default')->data['value'];
         }
@@ -43,10 +43,10 @@ return new class extends ComponentStandard {
             return $this->faker->name();
         }
 
-        $max = $component->getDecoration('max') ?: 255;
-        $min = max($component->getDecoration('min'), 6);
+        $min = $component->getDecoration('min')['value'] ?? 6;
+        $max = $component->getDecoration('max')['value'] ?? 255;
         if ($min > $max) {
-            $min = 1;
+            $min = $max;
         }
 
         return $this->faker->text(random_int($min, $max));
