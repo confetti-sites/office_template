@@ -4,4 +4,4 @@ $footer = on($parent)
 @endphp
 <br>
 <br>
-{{ $footer->text('title_of_big_footer')->label('De titel van de footer')->placeholder('Vul hier de titel in') }}
+{{ $footer->text('title_of_big_footer')->label('De titel van de footer')->default('Confetti')->placeholder('Vul hier de titel in') }}
