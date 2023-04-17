@@ -15,7 +15,7 @@ return new class extends ComponentStandard implements HasMapInterface {
         $component = $this->componentStore->find($this->key . '/-');
 
         $default = $component->getDecoration('default')['value'];
-        $view = rtrim($default, '.blade.php');
+        $view = str_replace('.blade.php', '', $default);
 
         $target = $component->getDecoration('byDirectory')['target'];
         $dir = ltrim($target, '/object/');

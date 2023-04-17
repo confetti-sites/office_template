@@ -11,10 +11,10 @@ return new class extends ComponentStandard {
     {
         $component = $this->componentStore->find($this->key);
         if ($component->hasDecorations('default')) {
-            return $component->getDecoration('default')->data['value'];
+            return $component->getDecoration('default')['value'];
         }
 
-        $label = $component->getDecoration('label')?->data['value'] ?? '';
+        $label = $component->getDecoration('label')['value'] ?? '';
 
         $haystack = strtolower($component->key . $label);
         if (str_contains($haystack, 'address')) {
