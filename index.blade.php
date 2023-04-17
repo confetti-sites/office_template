@@ -1,6 +1,5 @@
 @php
     $isAdmin = str_starts_with(request()->uri(), '/admin');
-
 @endphp
 
 @if($isAdmin)

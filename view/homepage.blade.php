@@ -13,6 +13,6 @@ homepage
 <br>
 
 @php($footer = section('footer'))
-@php($target = $footer->select('template')->byDirectory('/view/footers')->default('footer_small.blade.php'))
+@php($target = $footer->select('template')->byDirectory('/view/footers')->default('footer_big.blade.php'))
 
 @include($target->get(), ['parent' => $target])

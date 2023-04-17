@@ -12,16 +12,13 @@
         $options[$object->key] = $object->source['file'];
     }
 @endphp
-<div
-        x-data="{ {{ hashId($component->key) }}: '{{ $dir . '/' . $component->getDecoration('default')['value'] }}' }"
->
-    <label class="block mt-4 text-sm">
+<div x-data="{ {{ hashId($component->key) }}: '{{ $dir . '/' . $component->getDecoration('default')['value'] }}' }">
+    <label class="block text-sm">
         <span class="text-gray-700 dark:text-gray-400">
-          {{ $component->getDecoration('label')['value'] }}
+            {{ $component->getDecoration('label')['value'] }}
         </span>
-
         <select
-                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                class="block w-full mt-0 placeholder-gray-400 border-0 border-b-2 border-gray-300 px-0.5 focus:ring-0 focus:border-primary-300 dark:bg-transparent dark:border-gray-700 dark:text-gray-300 focus-within:text-primary-600 dark:focus-within:text-primary-400 dark:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:placeholder-gray-300"
                 x-model="{{ hashId($component->key) }}"
                 name="{{ $component->key }}"
         >
