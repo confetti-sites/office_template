@@ -8,9 +8,7 @@
     {{ $component->getDecoration('label')['value'] }}
 </h2>
 
-<div
-        class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
->
+<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
     @foreach($componentStore->whereParentKey($component->key) as $componentChild)
         @include("structure.{$componentChild->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $componentChild])
     @endforeach
