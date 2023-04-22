@@ -25,11 +25,8 @@
         </div>
         <ul class="flex items-center flex-shrink-0 space-x-6">
             <li class="flex">
-                <button class="rounded-md focus:outline-none focus:ring" @click="toggleTheme"
-                        aria-label="Toggle color mode">
-                    <template x-if="dark">
-                        <a href="/">Website</a>
-                    </template>
+                <button class="rounded-md focus:outline-none focus:ring">
+                    <a href="/">Website</a>
                 </button>
             </li>
             <!-- Theme toggler -->
