@@ -14,7 +14,7 @@
 
     <title>Admin</title>
 
-    <link rel="stylesheet" href="/generated/tailwind.output.css"/>
+    <link rel="stylesheet" href="/generated/admin/tailwind.output.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet" />
 
     <script src="/object/admin/assets/js/alpine.min.js" defer></script>
