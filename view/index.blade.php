@@ -53,8 +53,9 @@
 
         <br>
         Color: {{ $page->color('some_color')->default('#ea70cd')->label('Some color') }}<br>
-
-
+        Number: {{ $page->number('some_number')->label('Some number') }}<br>
+        Select with options: {{ $page->select('some_select')->options(['Option 1', 'Option 2'])->label('Some select') }}<br>
+        Select by directory:
         @php($footer = section('footer'))
         @php($target = $footer->select('template')->byDirectory('/view/footers')->default('footer_big.blade.php'))
 

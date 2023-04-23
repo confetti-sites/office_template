@@ -4,12 +4,17 @@
      * @var \Confetti\Helpers\ComponentStore $componentStore
      */
     use Confetti\Helpers\ComponentStore;
-    $dir = $component->getDecoration('byDirectory')['target'];
-
-    $objects = new ComponentStore($dir);
     $options = [];
-    foreach ($objects->whereParentKey($dir) as $object) {
-        $options[$object->key] = $object->source['file'];
+    if ($component->hasDecoration('byDirectory')) {
+        $dir = $component->getDecoration('byDirectory')['target'];
+        $objects = new ComponentStore($dir);
+        foreach ($objects->whereParentKey($dir) as $object) {
+            $options[$object->key] = $object->source['file'];
+        }
+    } else {
+        foreach ($component->getDecoration('options')['options'] as $option) {
+            $options[$option['id']] = $option['label'];
+        }
     }
 @endphp
 <div x-data="{ {{ hashId($component->key) }}: '{{ $dir . '/' . $component->getDecoration('default')['value'] }}' }">
@@ -28,9 +33,11 @@
         </select>
     </label>
 
-    @foreach($componentStore->whereParentKey($component->key) as $child)
-        <div x-show="{{ hashId($child->getDecoration('condition')['pointer_key']) }} == '{{ $child->getDecoration('condition')['pointed_key'] }}'">
-            @include("structure.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child])
-        </div>
-    @endforeach
+    @if($component->hasDecoration('byDirectory'))
+        @foreach($componentStore->whereParentKey($component->key) as $child)
+            <div x-show="{{ hashId($child->getDecoration('condition')['pointer_key']) }} == '{{ $child->getDecoration('condition')['pointed_key'] }}'">
+                @include("structure.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child])
+            </div>
+        @endforeach
+    @endif
 </div>

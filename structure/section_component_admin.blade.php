@@ -13,4 +13,3 @@
         @include("structure.{$componentChild->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $componentChild])
     @endforeach
 </div>
-

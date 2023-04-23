@@ -10,7 +10,7 @@ return new class extends ComponentStandard {
     public function get(): string
     {
         $component = $this->componentStore->find($this->key);
-        if ($component->hasDecorations('default')) {
+        if ($component->hasDecoration('default')) {
             return $component->getDecoration('default')['value'];
         }
 
