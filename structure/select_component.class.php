@@ -13,20 +13,27 @@ use Confetti\Helpers\HasMapInterface;
 return new class extends ComponentStandard implements HasMapInterface {
     public function get(): string
     {
-        return json_encode($this->getOptions(), JSON_THROW_ON_ERROR);
+        $component = $this->componentStore->findOrNull($this->key);
+        if ($component !== null) {
+            return $this->getValueFromOptions($component);
+        }
+        $component = $this->componentStore->find($this->key . '/-');
+        if ($component !== null) {
+            return $this->getValueFromByDirectory($component);
+        }
+        return '!!! Error: Component with type `select` need to have decoration `options` or `byDirectory` !!!';
     }
 
-    private function getOptions(): array
+    private function getValueFromOptions(ComponentEntity $component): string
     {
-        $component = $this->componentStore->find($this->key);
         $options = $component->getDecoration('options')['options'];
         if (count($options) === 0) {
-            return [];
+            return '';
         }
         return $component->getDecoration('options')['options'][0]['id'];
     }
 
-    public function getPathToView(ComponentEntity $component): string
+    public function getValueFromByDirectory(ComponentEntity $component): string
     {
         $default = $component->getDecoration('default')['value'];
         $view    = str_replace('.blade.php', '', $default);

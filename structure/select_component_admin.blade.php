@@ -11,10 +11,12 @@
         foreach ($objects->whereParentKey($dir) as $object) {
             $options[$object->key] = $object->source['file'];
         }
-    } else {
+    } elseif ($component->hasDecoration('options')) {
         foreach ($component->getDecoration('options')['options'] as $option) {
             $options[$option['id']] = $option['label'];
         }
+    } else {
+        throw new \RuntimeException('Select component must have either byDirectory or options decoration');
     }
 @endphp
 <div x-data="{ {{ hashId($component->key) }}: '{{ $dir . '/' . $component->getDecoration('default')['value'] }}' }">
