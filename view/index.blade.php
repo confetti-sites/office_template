@@ -51,6 +51,8 @@
             </div>
         </div>
 
+        <br>
+        Color: {{ $page->color('some_color')->default('#ea70cd')->label('Some color') }}<br>
 
 
         @php($footer = section('footer'))
