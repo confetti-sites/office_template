@@ -32,7 +32,6 @@
             @endforeach
         </select>
     </label>
-
     @if($component->hasDecoration('byDirectory'))
         @foreach($componentStore->whereParentKey($component->key) as $child)
             <div x-show="{{ hashId($child->getDecoration('condition')['pointer_key']) }} == '{{ $child->getDecoration('condition')['pointed_key'] }}'">
