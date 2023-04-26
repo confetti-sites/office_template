@@ -42,3 +42,8 @@
         @endforeach
     @endif
 </div>
+@pushonce('script_select')
+    <script>
+        console.log('select');
+    </script>
+@endpushonce

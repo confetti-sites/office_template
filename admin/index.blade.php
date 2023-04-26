@@ -42,9 +42,7 @@
             </main>
         </div>
     </div>
-    <script>
-
-    </script>
+    @stack('script_*')
 </body>
 
 </html>

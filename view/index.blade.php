@@ -3,6 +3,9 @@
 <head>
     <title>Confetti</title>
     <link rel="stylesheet" href="/generated/view/tailwind.output.css"/>
+    <script defer>
+        @stack('scripts_*')
+    </script>
 </head>
     <body>
         <div class="overflow-hidden bg-white py-24 sm:py-32">
@@ -11,7 +14,8 @@
                     <div class="lg:pr-8 lg:pt-4">
                         <div class="lg:max-w-lg">
                             <h2 class="text-base font-semibold leading-7 text-indigo-600">
-                                {{ $page->text('title')->label('Deploy faster')->placeholder('Vul hier de titel in') }}
+                                {{ $page->text('title_of_banner')->min(10)->max(50)->placeholder('Type your title') }}
+                                {{ $page->text('subtitle_of_banner')->min(10)->max(50)->placeholder('Type your title') }}
                             </h2>
                             <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better workflow</p>
                             <p class="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.</p>
@@ -52,10 +56,8 @@
         </div>
 
         <br>
-        Color: {{ $page->color('some_color')->default('#ea70cd')->label('Some color') }}<br>
-        Number: {{ $page->number('some_number')->label('Some number') }}<br>
-        Select with options: {{ $page->select('some_select')->options(['Option 1', 'Option 2'])->label('Some select') }}<br>
-        Select by directory:
+
+
         @php($footer = section('footer'))
         @php($target = $footer->select('template')->byDirectory('/view/footers')->default('footer_big.blade.php'))
 
