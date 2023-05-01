@@ -27,7 +27,7 @@ module.exports = {
                 xl: '36rem',
             },
             fontFamily: {
-                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+                sans: ['pluto', ...defaultTheme.fontFamily.sans],
             },
             boxShadow: {
                 xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
