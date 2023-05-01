@@ -323,7 +323,7 @@
                         </li>
                         <li>
                           <a
-                            href="./pricing.html"
+                            href="/pricing"
                             class="block transition hover:text-primary dark:hover:text-primaryLight md:px-4"
                           >
                             <span>Pricing</span>

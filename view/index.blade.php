@@ -11,11 +11,12 @@
 </head>
     <body class="text-md">
         @include('view.header')
-        @include('view.hero')
-        @include('view.usps')
 
-        <br>
-
+        @if(str_starts_with(request()->uri(), '/pricing'))
+            @include('view.pricing')
+        @else
+            @include('view.homepage')
+        @endif
 
         @php($footer = section('footer'))
         @php($target = $footer->select('template')->byDirectory('/view/footers')->default('footer.blade.php'))
