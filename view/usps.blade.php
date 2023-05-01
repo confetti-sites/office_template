@@ -1,5 +1,6 @@
+<div class="dark:bg-gray-900/80">
 <div
-      class="xl:max-w-6xl mx-auto px-4 xl:px-0 py-28 md:flex md:items-center"
+      class="container py-28 md:flex md:items-center "
     >
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <div
@@ -89,3 +90,4 @@
         </div>
       </div>
     </div>
+</div>

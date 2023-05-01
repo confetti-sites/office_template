@@ -3,7 +3,7 @@
               id="navbar"
               class="inset-x-0 z-20 w-full border-b border-gray-100 bg-white/80 backdrop-blur dark:border-gray-700/30 dark:bg-gray-900/80"
             >
-              <div class="mx-auto px-4 sm:px-12 xl:max-w-6xl xl:px-0">
+              <div class="container">
                 <div
                   class="relative flex flex-wrap items-center justify-between gap-6 lg:gap-0 lg:py-4"
                 >
@@ -347,6 +347,7 @@
                     </div>
                     <button
                       aria-label="switch theme"
+                      @click="toggleTheme"
                       class="switcher group relative hidden h-9 w-9 rounded-full before:absolute before:inset-0 before:rounded-full before:border before:border-gray-200 before:bg-gray-50 before:bg-gradient-to-b before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800 lg:flex"
                     >
                       <svg
