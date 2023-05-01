@@ -10,9 +10,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
     <body class="text-md">
-        @include('view.header');
-        @include('view.hero');
-        @include('view.usps');
+        @include('view.header')
+        @include('view.hero')
+        @include('view.usps')
 
         <br>
 
