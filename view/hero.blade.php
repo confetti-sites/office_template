@@ -1,10 +1,13 @@
+@php
+    $page = section('hero')
+@endphp
 <div class="flex items-center justify-center bg-gray-900">
     <div
       class="mx-auto px-4 xl:px-0 py-28 md:flex md:items-center xl:max-w-6xl"
     >
       <div class="md:w-1/2">
         <h1 class="text-6xl font-bold leading-tight text-white">
-          Confetti cms
+          {{ $page->text('title')->default('Confetti cms') }}
         </h1>
         <p class="mt-4 text-xl text-white">
           A developer first framework to build your websites blazing fast

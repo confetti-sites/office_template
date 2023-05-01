@@ -1,4 +1,3 @@
-@php($page = section('homepage'))
 <html>
 <head>
     <title>Confetti</title>
