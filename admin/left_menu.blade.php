@@ -1,7 +1,8 @@
 @php
     /**
-     * @var string $currentComponentKey
+     * @var \Confetti\Helpers\ContentStore $contentStore
      * @var \Confetti\Helpers\ComponentEntity[] $menuComponents
+     * @var string $currentContentId
      */
 @endphp
 <div class="py-4 text-gray-500 dark:text-gray-400">
@@ -10,7 +11,8 @@
     </a>
     <ul class="mt-6">
         @foreach($menuComponents as $component)
-        @php($isCurrent = $component->key === $currentComponentKey)
+        {{-- @todo component key by id --}}
+        @php($isCurrent = $component->key === $currentContentId)
         <li class="relative px-3 py-3">
             @if($isCurrent)<span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-primary-600" aria-hidden="true"></span>@endif
             <a

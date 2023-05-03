@@ -2,6 +2,8 @@
     /**
      * @var \Confetti\Helpers\ComponentEntity $component
      * @var \Confetti\Helpers\ComponentStore $componentStore
+     * @var \Confetti\Helpers\ContentStore $contentStore
+     * @var string $contentId
      */
     use Confetti\Helpers\ComponentStore;
     $options = [];
@@ -18,6 +20,10 @@
     } else {
         throw new \RuntimeException('Select component must have either byDirectory or options decoration');
     }
+
+    $currentValue = $contentStore->get($component->key) ?? $component->getDecoration('default')['value'];
+echo "<br> @todo select current value: " . $currentValue;
+echo "<br> @todo get/allow objects with _ in the filename: " . $currentValue;
 @endphp
 <div x-data="{ {{ hashId($component->key) }}: '{{ $dir . '/' . $component->getDecoration('default')['value'] }}' }">
     <label class="block text-sm">
