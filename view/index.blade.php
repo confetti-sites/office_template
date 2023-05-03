@@ -11,7 +11,7 @@
     <body class="text-md">
         @include('view.header')
 
-        @if(str_starts_with(request()->uri(), '/pricing'))
+        @if(str_starts_with(request()->uri(), 'pricing'))
             @include('view.pricing')
         @else
             @include('view.homepage')

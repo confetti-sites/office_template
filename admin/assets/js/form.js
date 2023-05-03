@@ -1,4 +1,23 @@
 document.addEventListener('alpine:init', () => {
+    // Get api url
+    let xhr = new XMLHttpRequest();
+    let adminConfig;
+
+    function setAdminConfig() {
+        xhr.open('GET', '/object/admin/config.blade.php', true);
+        xhr.responseType = 'json';
+        xhr.onload = function() {
+            let status = xhr.status;
+            if (status === 200) {
+                adminConfig = xhr.response;
+            } else {
+                console.error(status, xhr.response);
+            }
+        };
+        xhr.send()
+    }
+    setAdminConfig()
+
     Alpine.store('form', {
         changes: [],
         allChanges() {
@@ -10,7 +29,6 @@ document.addEventListener('alpine:init', () => {
             this.changes = this.changes.map(function(change) {
                 if (change.id === id) {
                     exists = true;
-                    console.log('update: ' + id + ' ' + value)
                     return{
                         id: id,
                         value: value
@@ -21,7 +39,6 @@ document.addEventListener('alpine:init', () => {
             });
             // Add if not exists
             if (!exists) {
-                console.log('push: ' + id + ' ' + value)
                 this.changes.push({
                     id: id,
                     value: value
@@ -32,7 +49,6 @@ document.addEventListener('alpine:init', () => {
     Alpine.bind('field', () => ({
         '@change'(event) {
             Alpine.store('form').upsert(event.target.attributes.name.value, event.target.value)
-            console.log('change')
         },
     }))
     Alpine.bind('submit', () => ({
@@ -47,11 +63,11 @@ document.addEventListener('alpine:init', () => {
                     console.log("Error: " + this.responseText);
                 }
             });
-            xhr.open("PATCH", "http://api.confetti-cms.com/content/contents");
+            xhr.open("PATCH", adminConfig.api_url + "/content/contents");
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.setRequestHeader("Accept", "application/json");
             xhr.send(body);
-            console.log('submit')
+            location.reload()
         },
     }))
 })
