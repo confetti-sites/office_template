@@ -21,8 +21,11 @@ module.exports = {
                 teal: colors.teal,
                 orange: colors.orange,
                 gray: colors.gray,
+                'color-red': '#f06060',
+                'color-yellow': '#fcd04b',
+                'color-green': '#2ecc71',
                 primary: {
-                    DEFAULT: '#3880ff',
+                    DEFAULT: '#0e83cd',
                     light: "#4c8dff",
                     dark: "#3171e0",
                 },

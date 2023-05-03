@@ -27,11 +27,15 @@
         </div>
       </div>
       <div class="md:w-1/2 mt-8 md:mt-0 md:ml-12">
-        <img
+        <div x-show="videoIsOpen">dfdfdfd</div>
+        <div @click="toggleShowVideo">
+
+          <img
           src="https://cdn.tuk.dev/previews/desktop-2x/hero_7.jpg"
           alt=""
           class="w-full h-full object-cover rounded-lg shadow-md"
-        />
+          />
+        </div>
       </div>
     </div>
   </div>

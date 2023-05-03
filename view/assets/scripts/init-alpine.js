@@ -22,6 +22,10 @@ function data() {
         this.dark = !this.dark
         setThemeToLocalStorage(this.dark)
       },
+      toggleShowVideo() {
+        this.videoIsOpen = !this.videoIsOpen
+      },
+      videoIsOpen: false,
       isSideMenuOpen: false,
       toggleSideMenu() {
         this.isSideMenuOpen = !this.isSideMenuOpen
