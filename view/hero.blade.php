@@ -9,8 +9,11 @@
         <h1 class="text-6xl font-bold leading-tight text-white">
           {{ $page->text('title')->default('Confetti cms') }}
         </h1>
+        <p class="mt-4 text-xl text-white" style="color: {{ $color = $page->color('the_color') }}">
+          Color: {{ $color }}. A developer first framework to build your websites blazing fast
+        </p>
         <p class="mt-4 text-xl text-white">
-          A developer first framework to build your websites blazing fast
+          Number: {{ $page->number('number') }}
         </p>
         <div class="flex">
           <div class="mt-8">

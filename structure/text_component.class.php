@@ -50,8 +50,9 @@ return new class extends ComponentStandard {
         }
 
         // Generate Lorem Ipsum
+        // Use different lengths for max to make it more interesting
         $min     = $component->getDecoration('min')['value'] ?? 6;
-        $max     = $component->getDecoration('max')['value'] ?? $this->getRandomMax();
+        $max     = $component->getDecoration('max')['value'] ?? $this->randomOf([10, 100, 1000, 10000]);
         if ($min > $max) {
             $min = $max;
         }
@@ -71,9 +72,8 @@ return new class extends ComponentStandard {
         return ucfirst($lorem);
     }
 
-    private function getRandomMax(): int
+    private function randomOf(array $possibilities): int
     {
-        $maxes = [10, 100, 1000, 10000];
-        return $maxes[array_rand($maxes)];
+        return $possibilities[array_rand($possibilities)];
     }
 };
