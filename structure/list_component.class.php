@@ -6,8 +6,7 @@ namespace Confetti\Components;
 
 use ArrayIterator;
 use Confetti\Helpers\ComponentStore;
-use Confetti\Helpers\ContentRepository;
-use Faker\Generator;
+use Confetti\Helpers\ContentStore;
 use IteratorAggregate;
 
 return new class implements IteratorAggregate {
@@ -20,10 +19,9 @@ return new class implements IteratorAggregate {
 
     /** @noinspection DuplicatedCode */
     public function __construct(
-        protected string            $key,
-        protected ComponentStore    $componentStore,
-        protected ContentRepository $contentRepository,
-        protected Generator         $faker,
+        protected string         $key,
+        protected ComponentStore $componentStore,
+        protected ContentStore $contentStore,
     )
     {
         $this->key .= '~';
@@ -41,8 +39,7 @@ return new class implements IteratorAggregate {
             $this->items[] = new Map(
                 $this->key,
                 $this->componentStore,
-                $this->contentRepository,
-                $faker,
+                $this->contentStore,
             );
         }
     }

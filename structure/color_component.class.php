@@ -14,6 +14,6 @@ return new class extends ComponentStandard {
             return $component->getDecoration('default')['value'];
         }
 
-        return $this->faker->hexColor();
+        return sprintf('#%06X', random_int(0, 0xFFFFFF));
     }
 };

@@ -21,6 +21,7 @@ return new class extends ComponentStandard {
 
         $min = $component->getDecoration('min')['value'] ?? -10000;
         $max = $component->getDecoration('max')['value'] ?? 10000;
-        return (int)$this->faker->numberBetween($min, $max);
+
+        return random_int($min, $max);
     }
 };

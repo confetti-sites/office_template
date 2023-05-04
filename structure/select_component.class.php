@@ -7,7 +7,7 @@ namespace Confetti\Components;
 use Confetti\Helpers\ComponentEntity;
 use Confetti\Helpers\ComponentStandard;
 use Confetti\Helpers\ComponentStore;
-use Confetti\Helpers\ContentRepository;
+use Confetti\Helpers\ContentStore;
 use Confetti\Helpers\HasMapInterface;
 
 return new class extends ComponentStandard implements HasMapInterface {
@@ -50,8 +50,7 @@ return new class extends ComponentStandard implements HasMapInterface {
         return new Map(
             $this->key . '/-',
             new ComponentStore($this->key . '/-'),
-            new ContentRepository(),
-            $this->faker,
+            new ContentStore(),
         );
     }
 };
