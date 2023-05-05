@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Confetti</title>
+    <title>Confetti CMS</title>
     <link rel="stylesheet" href="/generated/view/tailwind.output.css"/>
     <link rel="stylesheet" href="/object/view/assets/css/fonts.css"/>
     <script defer>

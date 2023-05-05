@@ -257,7 +257,7 @@
               </div>
             </div>
             <div class="flex justify-between text-sm md:pl-16">
-              <span>© tailus 2003 - Present</span>
+              <span>© Confetti CMS @php(date('Y')) - Present</span>
               <span>All right reserved</span>
             </div>
           </div>

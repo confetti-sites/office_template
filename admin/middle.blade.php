@@ -5,7 +5,7 @@
      * @var string $currentContentId
      */
     //    @todo convert component by id
-    $component = $currentContentId ? $componentStore->find($currentContentId) : null;
+    $component = $currentContentId ? $componentStore->findOrNull($currentContentId) : null;
 @endphp
 <div class="container px-6 mx-auto grid">
     @if($component)
