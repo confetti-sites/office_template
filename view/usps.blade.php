@@ -1,5 +1,6 @@
+<div class="dark:bg-gray-900/80">
 <div
-      class="xl:max-w-6xl mx-auto px-4 xl:px-0 py-28 md:flex md:items-center"
+      class="container pb-28 md:flex md:items-center dark:pt-28"
     >
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <div
@@ -21,12 +22,12 @@
                 ></path>
               </svg>
               <h3 class="text-lg font-medium text-gray-900 dark:text-white">
-                Push to deploy.
+                Create the cms you want
               </h3>
             </div>
             <p class="mt-2 text-base text-gray-500 dark:text-white">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id
-              magna.
+              Write the fields you need in de code and they will appear in the cms magically.
+              No Backender needed!
             </p>
           </div>
         </div>
@@ -50,12 +51,11 @@
                 ></path>
               </svg>
               <h3 class="text-lg font-medium text-gray-900 dark:text-white">
-                Push to deploy.
+                Online in seconds
               </h3>
             </div>
             <p class="mt-2 text-base text-gray-500 dark:text-white">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id
-              magna.
+              Wheater you want yo deploy your website or in develpoment, it is a manner of seconds before it is online.
             </p>
           </div>
         </div>
@@ -78,14 +78,15 @@
                 ></path>
               </svg>
               <h3 class="text-lg font-medium text-gray-900 dark:text-white">
-                Push to deploy.
+                Never an empty website
+                {{-- You're in full controll --}}
               </h3>
             </div>
             <p class="mt-2 text-base text-gray-500 dark:text-white">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id
-              magna.
+              During development we provide a way to fill your website with dummy content, or create your own content.
             </p>
           </div>
         </div>
       </div>
     </div>
+</div>

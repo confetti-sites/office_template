@@ -3,31 +3,76 @@
 @tailwind utilities;
 
 :root {
-    font-family: 'pluto';
+  font-family: "pluto";
+}
+
+.container {
+  @apply mx-auto;
+  @apply px-4;
+  @apply sm:px-6;
+  @apply lg:px-8;
+  @apply xl:px-0;
+  @apply xl:max-w-6xl;
 }
 
 @layer base {
-    /* width */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
 
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #888;
-    }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
 
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 
 input {
-    @apply bg-gray-100;
+  @apply bg-gray-100;
+}
+
+.button {
+  @apply text-dark py-2 px-4 rounded;
+}
+
+.button-primary {
+  @apply bg-primary hover:bg-primary-dark text-white;
+}
+
+.button-clear {
+  @apply hover:bg-gray-100 text-dark hover:text-dark;
+}
+
+.button-round {
+  @apply rounded-full;
+}
+
+.button-ghost {
+  @apply border-2 border-primary hover:bg-primary-dark text-dark hover:text-white;
+}
+
+.button-icon {
+  @apply flex items-center;
+}
+
+.button-icon-only {
+  @apply flex items-center justify-center;
+  width: 44px;
+  height: 44px;
+}
+
+.button-icon-only .icon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
