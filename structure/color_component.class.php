@@ -10,7 +10,7 @@ return new class extends ComponentStandard {
     public function get(): string
     {
         // Get saved value
-        $value = $this->contentStore->get($this->key);
+        $value = $this->contentStore->find($this->key);
         if ($value !== null) {
             return $value;
         }

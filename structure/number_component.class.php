@@ -15,7 +15,7 @@ return new class extends ComponentStandard {
     public function toInt(): int
     {
         // Get saved value
-        $value = $this->contentStore->get($this->key);
+        $value = $this->contentStore->find($this->key);
         if ($value !== null) {
             return (int)$value;
         }

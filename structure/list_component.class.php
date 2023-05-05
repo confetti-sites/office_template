@@ -9,6 +9,9 @@ use Confetti\Helpers\ComponentStore;
 use Confetti\Helpers\ContentStore;
 use IteratorAggregate;
 
+/**
+ * @implements \IteratorAggregate<string, Map>
+ */
 return new class implements IteratorAggregate {
     /**
      * The items contained in the collection.
@@ -113,4 +116,3 @@ return new class implements IteratorAggregate {
         unset($this->items[$key]);
     }
 };
-

@@ -15,6 +15,8 @@
 
         @if(str_starts_with(request()->uri(), '/pricing'))
             @include('view.pricing')
+        @elseif(str_starts_with(request()->uri(), '/jobs'))
+            @include('view.jobs')
         @else
             @include('view.homepage')
         @endif

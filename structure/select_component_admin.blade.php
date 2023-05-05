@@ -8,8 +8,9 @@
     use Confetti\Components\Select;
 
     $targetDir = $component->getDecoration('byDirectory')['target'];
-    $currentValue = $contentStore->get($component->key) ?? $targetDir . $component->getDecoration('default')['value'] ?? '';
+    $currentValue = $contentStore->find($component->key) ?? $targetDir . $component->getDecoration('default')['value'] ?? '';
     $options = Select::getAllOptions($component)
+    // Use hashId because alpinejs can't handel the / in the key
 @endphp
 <div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">
     <label class="block text-sm">
@@ -29,8 +30,10 @@
     </label>
     @if($component->hasDecoration('byDirectory'))
         @foreach($componentStore->whereParentKey($component->key) as $child)
+            {{-- @todo move to utils --}}
+            @php($suffix = str_replace($component->key, '', $child->key))
             <div x-show="{{ hashId($child->getDecoration('condition')['pointer_key']) }} == '{{ $child->getDecoration('condition')['pointed_key'] }}'">
-                @include("structure.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child])
+                @include("structure.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child, 'contentId' => $contentId . $suffix])
             </div>
         @endforeach
     @endif

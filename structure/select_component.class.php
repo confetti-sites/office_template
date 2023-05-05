@@ -27,7 +27,7 @@ return new class extends ComponentStandard implements HasMapInterface {
     public function getValueFromOptions(ComponentEntity $component): string
     {
         // Get saved value
-        $content = $this->contentStore->get($this->key);
+        $content = $this->contentStore->find($this->key);
         if ($content !== null) {
             return $content;
         }
@@ -48,7 +48,7 @@ return new class extends ComponentStandard implements HasMapInterface {
     public function getValueFromByDirectory(ComponentEntity $component): string
     {
         // Get saved value
-        $objectPath = $this->contentStore->get($this->key);
+        $objectPath = $this->contentStore->find($this->key);
         if ($objectPath !== null) {
             return self::getViewByPath($objectPath);
         }
