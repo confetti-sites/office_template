@@ -1,7 +1,7 @@
-<footer class="border-t border-gray-100 pt-32 pb-8 dark:border-gray-800">
+<footer class="border-t border-gray-100 pt-32 pb-8 dark:border-gray-800 dark:bg-gray-900/80">
     <div>
       <div
-        class="m-auto space-y-8 px-4 text-gray-600 dark:text-gray-400 sm:px-12 xl:max-w-6xl xl:px-0"
+        class="container space-y-8  text-gray-600 dark:text-gray-400"
       >
         <div class="grid grid-cols-8 gap-6 md:gap-0">
           <div class="col-span-8 md:col-span-2 lg:col-span-3">
