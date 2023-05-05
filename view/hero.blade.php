@@ -15,6 +15,9 @@
         <p class="mt-4 text-xl text-white">
           Number: {{ $page->number('number') }}
         </p>
+        <p class="mt-4 text-xl text-white">
+          Select: {{ $page->select('option')->options(['first', 'second']) }}
+        </p>
         <div class="flex">
           <div class="mt-8">
             <a

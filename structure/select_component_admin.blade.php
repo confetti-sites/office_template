@@ -5,27 +5,13 @@
      * @var \Confetti\Helpers\ContentStore $contentStore
      * @var string $contentId
      */
-    use Confetti\Helpers\ComponentStore;
-    $options = [];
-    if ($component->hasDecoration('byDirectory')) {
-        $dir = $component->getDecoration('byDirectory')['target'];
-        $objects = new ComponentStore($dir);
-        foreach ($objects->whereParentKey($dir) as $object) {
-            $options[$object->key] = $object->source['file'];
-        }
-    } elseif ($component->hasDecoration('options')) {
-        foreach ($component->getDecoration('options')['options'] as $option) {
-            $options[$option['id']] = $option['label'];
-        }
-    } else {
-        throw new \RuntimeException('Select component must have either byDirectory or options decoration');
-    }
+    use Confetti\Components\Select;
 
-    $currentValue = $contentStore->get($component->key) ?? $component->getDecoration('default')['value'];
-echo "<br> @todo select current value: " . $currentValue;
-echo "<br> @todo get/allow objects with _ in the filename: " . $currentValue;
+    $targetDir = $component->getDecoration('byDirectory')['target'];
+    $currentValue = $contentStore->get($component->key) ?? $targetDir . $component->getDecoration('default')['value'] ?? '';
+    $options = Select::getAllOptions($component)
 @endphp
-<div x-data="{ {{ hashId($component->key) }}: '{{ $dir . '/' . $component->getDecoration('default')['value'] }}' }">
+<div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">
     <label class="block text-sm">
         <span class="text-gray-700 dark:text-gray-400">
             {{ $component->getDecoration('label')['value'] }}
@@ -36,8 +22,8 @@ echo "<br> @todo get/allow objects with _ in the filename: " . $currentValue;
                 x-bind="field"
                 name="{{ $component->key }}"
         >
-            @foreach($options as $key => $value)
-                <option value="{{ $key }}" {{ $component->key === $key ? 'selected' : '' }}>{{ $value }}</option>
+            @foreach($options as $value => $optionLabel)
+                <option value="{{ $value }}">{{ $optionLabel }}</option>
             @endforeach
         </select>
     </label>
