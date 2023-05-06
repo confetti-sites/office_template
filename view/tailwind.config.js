@@ -16,6 +16,10 @@ module.exports = {
                 },
             },
         }),
+        fontFamily: {
+            'headings': ['pluto'],
+            'body': ['Lato', 'sans-serif'],
+          },
         extend: {
             colors: {
                 teal: colors.teal,

@@ -25,7 +25,7 @@
                 Create the cms you want
               </h3>
             </div>
-            <p class="mt-2 text-base text-gray-500 dark:text-white">
+            <p class="mt-2 text-base text-gray-500 dark:text-white font-body">
               Write the fields you need in de code and they will appear in the cms magically.
               No Backender needed!
             </p>
@@ -54,7 +54,7 @@
                 Online in seconds
               </h3>
             </div>
-            <p class="mt-2 text-base text-gray-500 dark:text-white">
+            <p class="mt-2 text-base text-gray-500 dark:text-white font-body">
               Wheater you want yo deploy your website or in develpoment, it is a manner of seconds before it is online.
             </p>
           </div>
@@ -82,7 +82,7 @@
                 {{-- You're in full controll --}}
               </h3>
             </div>
-            <p class="mt-2 text-base text-gray-500 dark:text-white">
+            <p class="mt-2 text-base text-gray-500 dark:text-white font-body">
               During development we provide a way to fill your website with dummy content, or create your own content.
             </p>
           </div>

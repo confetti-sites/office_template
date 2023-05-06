@@ -1,7 +1,7 @@
-<header>
+<header class="fixed z-20 bg-white/80 backdrop-blur border-b border-gray-100 dark:border-gray-700/30 dark:bg-gray-900/80 w-full">
             <nav
               id="navbar"
-              class="inset-x-0 z-20 w-full border-b border-gray-100 bg-white/80 backdrop-blur dark:border-gray-700/30 dark:bg-gray-900/80"
+              class=" relative inset-x-0"
             >
               <div class="container">
                 <div
@@ -81,9 +81,8 @@
                         class="space-y-6 text-base font-medium tracking-wide lg:flex lg:space-y-0 lg:text-sm"
                       >
                         <li
-                          class="relative"
-                          @mouseover="open = true"
-                          @mouseover.away="open = false"
+                          x-auto-animate
+                          class="group relative"
                         >
                           <a
                             href="./solution.html"
@@ -93,7 +92,6 @@
                           </a>
 
                           <div
-                            x-show="open"
                             x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 translate-y-1"
                             x-transition:enter-end="opacity-100 translate-y-0"
@@ -101,7 +99,7 @@
                             x-transition:leave-start="opacity-100 translate-y-0"
                             x-transition:leave-end="opacity-0 translate-y-1"
                             x-description="Flyout menu, show/hide based on flyout menu state."
-                            class="absolute left-0 z-10 pt-5 flex w-screen max-w-max"
+                            class="absolute left-0 z-10 pt-5 hidden w-screen max-w-max group-hover:flex"
                             x-ref="panel"
                             @click.away="open = false"
                           >
@@ -315,14 +313,6 @@
                         </li>
                         <li>
                           <a
-                            href="./customers.html"
-                            class="block transition hover:text-primary dark:hover:text-primaryLight md:px-4"
-                          >
-                            <span>Customers</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a
                             href="/pricing"
                             class="block transition hover:text-primary dark:hover:text-primaryLight md:px-4"
                           >
@@ -336,12 +326,12 @@
                       class="mt-12 -ml-1 flex w-full flex-col space-y-2 border-primary/10 dark:border-gray-700 sm:flex-row md:w-max lg:mt-0 lg:mr-6 lg:space-y-0 lg:border-l lg:pl-6"
                     >
                       <a
-                        href="./contact.html"
+                        href="./docs.html"
                         class="relative ml-auto flex h-9 w-full items-center justify-center before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-primaryLight sm:px-4 lg:before:border lg:before:border-gray-200 lg:before:bg-gray-100 lg:dark:before:bg-gray-800"
                       >
                         <span
                           class="relative text-sm font-semibold text-white dark:text-gray-900 lg:text-primary lg:dark:text-white"
-                          >Get started</span
+                          >Docs</span
                         >
                       </a>
                     </div>
