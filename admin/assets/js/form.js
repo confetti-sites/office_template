@@ -64,13 +64,14 @@ document.addEventListener('alpine:init', () => {
             xhr.addEventListener("readystatechange", function() {
                 if (this.status >= 300) {
                     console.log("Error: " + this.responseText);
+                    return;
                 }
-                    // if parentContentId string has ~ go back
-                    if (hasParent) {
-                        location.href = '/admin' + parentContentId
-                    } else {
-                        location.reload()
-                    }
+                // if parentContentId string has ~ go back
+                if (hasParent) {
+                    location.href = '/admin' + parentContentId
+                } else {
+                    location.reload()
+                }
             });
             xhr.open("PATCH", adminConfig.api_url + "/content/contents");
             xhr.setRequestHeader("Content-Type", "application/json");

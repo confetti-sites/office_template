@@ -38,11 +38,9 @@
         </tr>
         </thead>
         <tbody class="table-auto">
-
         @foreach($contentStore->wherePrefix($contentId) as $item)
             {{-- @todo Select parent id from content from db--}}
             @php($itemId = preg_replace('/\/[\w~-]+$/', '', $item['id']))
-
             <tr>
                 <td>
                     <a href="/admin{{ $itemId }}">{{ $item['value'] }}</a>
@@ -51,10 +49,6 @@
         @endforeach
         </tbody>
     </table>
-    <br>
-    <br>
-    <br>
-    <br>
 </div>
 @pushonce('script_text')
     <script>

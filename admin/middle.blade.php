@@ -5,6 +5,7 @@
      * @var string $currentContentId
      */
     // @todo move to utils
+    // @todo multiple lists
     $componentKey = preg_replace('/~([a-f0-9-]+)/', '~', $currentContentId);
     $parentContentId = preg_replace('/\/[\w~-]+$/', '', $currentContentId);
     $hasParent = str_contains($currentContentId, '~');
