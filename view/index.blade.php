@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>Confetti CMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/generated/view/tailwind.output.css"/>
     <link rel="stylesheet" href="/object/view/assets/css/fonts.css"/>
     <script defer>
