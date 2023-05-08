@@ -50,6 +50,9 @@ document.addEventListener('alpine:init', () => {
         '@change'(event) {
             Alpine.store('form').upsert(event.target.attributes.name.value, event.target.value)
         },
+        '@init'(event) {
+            Alpine.store('form').upsert(event.target.attributes.name.value, event.target.value)
+        },
     }))
     Alpine.bind('submit', () => ({
         '@click.throttle.1000ms'(event) {

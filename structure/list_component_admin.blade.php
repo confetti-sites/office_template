@@ -32,21 +32,26 @@
     </a>
 </label>
 <div class="container px-6 mx-auto grid">
-    {{-- @todo Only get necessary columns --}}
+    @php
+        $columns = $component->getDecoration('columns')['columns'] ?? throw new \Exception('Error: No columns defined. Use ->columns([]) to define columns. In ' . $component->source);
+        $fields = array_map(static fn($column) => $column['id'], $columns);
+    @endphp
     <table class="table-auto">
         <thead>
         <tr>
-            <th>Name</th>
+            @foreach($columns as $column)
+                <th>{{ $column['label'] }}</th>
+            @endforeach
         </tr>
         </thead>
         <tbody class="table-auto">
-        @foreach($contentStore->wherePrefix($contentId) as $item)
-            {{-- @todo Select parent id from content from db--}}
-            @php($itemId = preg_replace('/\/[\w~-]+$/', '', $item['id']))
+        @foreach($contentStore->whereIn($contentId, $fields) as $item)
             <tr>
-                <td>
-                    <a href="/admin{{ $itemId }}">{{ $item['value'] }}</a>
-                </td>
+                @foreach($item as $content)
+                    <td>
+                        {{ $content['value'] }}
+                    </td>
+                @endforeach
             </tr>
         @endforeach
         </tbody>
