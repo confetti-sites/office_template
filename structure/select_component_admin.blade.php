@@ -14,7 +14,7 @@
 @endphp
 <div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">
     <label class="block text-sm">
-        <span class="text-gray-700 dark:text-gray-400">
+        <span class="">
             {{ $component->getDecoration('label')['value'] }}
         </span>
         <select
@@ -22,7 +22,7 @@
                 x-model="{{ hashId($component->key) }}"
                 x-bind="field"
                 x-init="$dispatch('change')"
-                name="{{ $component->key }}"
+                name="{{ $contentId }}"
         >
             @foreach($options as $value => $optionLabel)
                 <option value="{{ $value }}">{{ $optionLabel }}</option>

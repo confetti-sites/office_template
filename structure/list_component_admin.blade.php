@@ -5,23 +5,7 @@
      * @var \Confetti\Helpers\ContentStore $contentStore
      * @var string $contentId
      */
-    // @todo move to utils
-    if (!function_exists('guidv4')) {
-        function guidv4() {
-            // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
-            $data = random_bytes(16);
-            assert(strlen($data) === 16);
-
-            // Set version to 0100
-            $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
-            // Set bits 6-7 to 10
-            $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
-
-            // Output the 36 character UUID.
-            return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
-        }
-    }
-    $newId = guidv4();
+    use Confetti\Components\List_;$newId = bin2hex(random_bytes(4));
 @endphp
 <label class="block mt-4 text-sm">
     <a
@@ -33,11 +17,10 @@
 </label>
 <div class="container px-6 mx-auto grid">
     @php
-        $columns = $component->getDecoration('columns')['columns'] ?? throw new \Exception('Error: No columns defined. Use ->columns([]) to define columns. In ' . $component->source);
-        $fields = array_map(static fn($column) => $column['id'], $columns);
+        [$columns, $rows] = List_::getColumnsAndRows($component, $contentStore, $contentId);
     @endphp
     <table class="table-auto">
-        <thead>
+        <thead class="text-left">
         <tr>
             @foreach($columns as $column)
                 <th>{{ $column['label'] }}</th>
@@ -45,9 +28,9 @@
         </tr>
         </thead>
         <tbody class="table-auto">
-        @foreach($contentStore->whereIn($contentId, $fields) as $item)
+        @foreach($rows as $row)
             <tr>
-                @foreach($item as $content)
+                @foreach($row as $content)
                     <td>
                         {{ $content['value'] }}
                     </td>

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Confetti\Components;
 
 use ArrayIterator;
+use Confetti\Helpers\ComponentEntity;
 use Confetti\Helpers\ComponentStore;
 use Confetti\Helpers\ContentStore;
 use IteratorAggregate;
@@ -45,6 +46,30 @@ return new class implements IteratorAggregate {
                 $this->contentStore,
             );
         }
+    }
+
+    /**
+     * return tag, but with map
+     * @return array<string, Map>
+     */
+    public static function getColumnsAndRows(
+        ComponentEntity $component,
+        ContentStore                      $contentStore,
+        string                            $contentId,
+    ): array {
+        $columns = $component->getDecoration('columns')['columns'] ?? throw new \Exception('Error: No columns defined. Use ->columns([]) to define columns. In ' . $component->source);
+        $fields = array_map(static fn($column) => $column['id'], $columns);
+
+        $data = $contentStore->whereIn($contentId, $fields);
+
+        // Make rows by grouping on the id minus the column id
+        $rows = [];
+        foreach ($data as $item) {
+            $group = preg_replace('/' . implode('|', $fields) . '$/', '', $item['id']);
+            $rows[$group][] = $item;
+        }
+
+        return [$columns, $rows];
     }
 
     /**
