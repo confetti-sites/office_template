@@ -50,14 +50,20 @@ return new class extends ComponentStandard implements HasMapInterface {
         // Get saved value
         $objectPath = $this->contentStore->find($this->key);
         if ($objectPath !== null) {
-            return self::getViewByPath($objectPath);
+            if (str_ends_with($objectPath, '.blade.php')) {
+                return self::getViewByPath($objectPath);
+            }
+            return $objectPath;
         }
 
         // Get default view
-        $fileName = $component->getDecoration('default')['value'];
+        $fileName = $component->getDecoration('default')['value'] ?? throw new \Exception('Error: No default defined. Use ->default(\'filename_without_directory\') to define the default value. In ' . $component->source);
         $target = $component->getDecoration('byDirectory')['target'];
-
-        return self::getViewByPath($target . '/' . $fileName);
+        $objectPath = $target . '/' . $fileName;
+        if (str_ends_with($objectPath, '.blade.php')) {
+            return self::getViewByPath($objectPath);
+        }
+        return $objectPath;
     }
 
     public static function getAllOptions(ComponentEntity $component): array
