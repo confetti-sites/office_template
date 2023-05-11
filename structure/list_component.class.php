@@ -62,11 +62,13 @@ return new class implements IteratorAggregate {
 
         $data = $contentStore->whereIn($contentId, $fields);
 
-        // Make rows by grouping on the id minus the column id
+        // Make rows by grouping on the id minus the relative id
         $rows = [];
         foreach ($data as $item) {
-            $group = preg_replace('/' . implode('|', $fields) . '$/', '', $item['id']);
-            $rows[$group][] = $item;
+            // Trim relative id
+            $regex = '/\/(?:' . implode('|', $fields) . ')$/';
+            $parentId = preg_replace($regex, '', $item['id'], 1);
+            $rows[$parentId][] = $item;
         }
 
         return [$columns, $rows];

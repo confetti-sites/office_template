@@ -13,7 +13,7 @@
     // Use hashId because alpinejs can't handel the / in the key
 @endphp
 <div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">
-    <label class="block text-sm">
+    <label class="block mt-4 text-sm">
         <span class="">
             {{ $component->getDecoration('label')['value'] }}
         </span>

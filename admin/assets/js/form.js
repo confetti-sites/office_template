@@ -1,22 +1,31 @@
 document.addEventListener('alpine:init', () => {
-    // Get api url
-    let xhr = new XMLHttpRequest();
-    let adminConfig;
 
-    function setAdminConfig() {
-        xhr.open('GET', '/object/admin/config.blade.php', true);
-        xhr.responseType = 'json';
-        xhr.onload = function() {
-            let status = xhr.status;
-            if (status === 200) {
-                adminConfig = xhr.response;
-            } else {
-                console.error(status, xhr.response);
-            }
-        };
-        xhr.send()
-    }
-    setAdminConfig()
+    Alpine.store('config', {
+        apiUrl: 'defaultasdf',
+        init() {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', '/object/admin/config.blade.php', true);
+            xhr.responseType = 'json';
+            xhr.onload = function() {
+                let status = xhr.status;
+                if (status === 200) {
+                    Alpine.store('config').setApiUrl(xhr.response.api_url);
+                } else {
+                    console.error(status, xhr.response);
+                }
+            };
+            xhr.send()
+        },
+        getApiUrl() {
+            console.log('getApiUrl');
+            console.log(this.apiUrl);
+            return this.apiUrl
+        },
+        setApiUrl(url) {
+            console.log('setApiUrl ' + url);
+            this.apiUrl = url
+        }
+    })
 
     Alpine.store('form', {
         changes: [],
@@ -61,7 +70,6 @@ document.addEventListener('alpine:init', () => {
             let body = JSON.stringify({"data": data});
             const parentContentId = event.target.attributes['parent-content-id'].value
             const hasParent = event.target.attributes['has-parent'].value
-            console.log(hasParent);
 
             xhr.withCredentials = true;
             xhr.addEventListener("readystatechange", function() {
@@ -76,7 +84,7 @@ document.addEventListener('alpine:init', () => {
                     location.reload()
                 }
             });
-            xhr.open("PATCH", adminConfig.api_url + "/content/contents");
+            xhr.open("PATCH", Alpine.store('config').getApiUrl() + "/content/contents");
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.setRequestHeader("Accept", "application/json");
             xhr.send(body);
