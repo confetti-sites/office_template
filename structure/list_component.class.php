@@ -28,9 +28,17 @@ return new class implements IteratorAggregate {
         protected ContentStore   $contentStore,
     )
     {
-//        $result = $this->contentStore->find($this->key);
         $this->key   .= '~';
-        $this->items = $this->getFakeComponents();
+        $updatedAtIds = $this->contentStore->whereIn($this->key, ['updated_at']);
+        if (count($updatedAtIds) === 0) {
+            $this->items = $this->getFakeComponents();
+            return;
+        }
+
+        foreach ($updatedAtIds as $item) {
+            $id = preg_replace('/\/updated_at$/', '', $item['id'], 1);
+            $this->items[] = new Map($id, $this->componentStore, $this->contentStore);
+        }
     }
 
     /**
