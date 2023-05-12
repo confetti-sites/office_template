@@ -10,11 +10,6 @@
     $parentContentId = preg_replace('/\/[\w~-]+$/', '', $currentContentId);
     $hasParent = str_contains($currentContentId, '~');
     $components = $componentStore->whereParentKey($componentKey);
-//
-//    echo '<pre>';
-//    print_r($componentKey);
-//    print_r($components);
-//    echo '</pre>';
 @endphp
 <div class="container px-6 mx-auto grid">
     @foreach($components as $component)
