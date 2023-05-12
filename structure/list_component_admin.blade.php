@@ -50,7 +50,7 @@
                 class="flex items-center justify-center px-2 py-1 mb-5 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                 href="/admin{{ $contentId . $newId }}"
         >
-            Add {{ $component->getDecoration('label')['value'] }}
+            + Add {{ $component->getDecoration('label')['value'] }}
         </a>
     </label>
 </div>

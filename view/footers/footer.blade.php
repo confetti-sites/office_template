@@ -140,8 +140,9 @@
                                     <a
                                             href="{{ $item->text('link')->min(2)->max(200) }}"
                                             class="text-sm duration-100 hover:text-primary dark:hover:text-white"
-                                    >{{ $item->text('title')->min(1)->max(30) }}</a
                                     >
+                                        {{ $item->text('title')->min(1)->max(30) }}
+                                    </a>
                                 </li>
                                 @endforeach
                             </ul>

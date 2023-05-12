@@ -60,7 +60,9 @@ document.addEventListener('alpine:init', () => {
             Alpine.store('form').upsert(event.target.attributes.name.value, event.target.value)
         },
         '@init'(event) {
-            Alpine.store('form').upsert(event.target.attributes.name.value, event.target.value)
+            // Wait for all fields (specially for select) to be initialized
+                Alpine.store('form').upsert(event.target.attributes.name.value, event.target.value)
+            ;
         },
     }))
     Alpine.bind('submit', () => ({
