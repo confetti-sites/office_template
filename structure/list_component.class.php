@@ -25,27 +25,12 @@ return new class implements IteratorAggregate {
     public function __construct(
         protected string         $key,
         protected ComponentStore $componentStore,
-        protected ContentStore $contentStore,
+        protected ContentStore   $contentStore,
     )
     {
-        $this->key .= '~';
-        $component = $this->componentStore->find($this->key);
-
-        $max = $component->getDecoration('max')['value'] ?? 100;
-        $min = $component->getDecoration('min')['value'] ?? 1;
-
-        $amount = random_int($min, $max);
-
-        $i = 1;
-        while ($i <= $amount) {
-            $i++;
-
-            $this->items[] = new Map(
-                $this->key,
-                $this->componentStore,
-                $this->contentStore,
-            );
-        }
+//        $result = $this->contentStore->find($this->key);
+        $this->key   .= '~';
+        $this->items = $this->getFakeComponents();
     }
 
     /**
@@ -54,11 +39,12 @@ return new class implements IteratorAggregate {
      */
     public static function getColumnsAndRows(
         ComponentEntity $component,
-        ContentStore                      $contentStore,
-        string                            $contentId,
-    ): array {
+        ContentStore    $contentStore,
+        string          $contentId,
+    ): array
+    {
         $columns = $component->getDecoration('columns')['columns'] ?? throw new \Exception('Error: No columns defined. Use ->columns([]) to define columns. In ' . $component->source);
-        $fields = array_map(static fn($column) => $column['id'], $columns);
+        $fields  = array_map(static fn($column) => $column['id'], $columns);
 
         $data = $contentStore->whereIn($contentId, $fields);
 
@@ -66,8 +52,8 @@ return new class implements IteratorAggregate {
         $rows = [];
         foreach ($data as $item) {
             // Trim relative id
-            $regex = '/\/(?:' . implode('|', $fields) . ')$/';
-            $parentId = preg_replace($regex, '', $item['id'], 1);
+            $regex             = '/\/(?:' . implode('|', $fields) . ')$/';
+            $parentId          = preg_replace($regex, '', $item['id'], 1);
             $rows[$parentId][] = $item;
         }
 
@@ -141,5 +127,27 @@ return new class implements IteratorAggregate {
     public function offsetUnset($key): void
     {
         unset($this->items[$key]);
+    }
+
+    private function getFakeComponents(): array
+    {
+        $component = $this->componentStore->find($this->key);
+
+        $max = $component->getDecoration('max')['value'] ?? 100;
+        $min = $component->getDecoration('min')['value'] ?? 1;
+
+        $amount = random_int($min, $max);
+
+        $i     = 1;
+        $items = [];
+        while ($i <= $amount) {
+            $i++;
+            $items[] = new Map(
+                $this->key,
+                $this->componentStore,
+                $this->contentStore,
+            );
+        }
+        return $items;
     }
 };
