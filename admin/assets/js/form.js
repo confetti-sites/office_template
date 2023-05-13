@@ -1,24 +1,23 @@
 document.addEventListener('alpine:init', () => {
 
     Alpine.store('config', {
-        apiUrl: 'defaultasdf',
+        apiUrl: undefined,
         init() {
             let xhr = new XMLHttpRequest();
             xhr.open('GET', '/object/admin/config.blade.php', true);
             xhr.responseType = 'json';
-            xhr.onload = function() {
+            xhr.onload = function () {
                 let status = xhr.status;
                 if (status === 200) {
                     Alpine.store('config').setApiUrl(xhr.response.api_url);
                 } else {
                     console.error(status, xhr.response);
+                    Alpine.store('config').setApiUrl('error_from_config');
                 }
             };
             xhr.send()
         },
         getApiUrl() {
-            console.log('getApiUrl');
-            console.log(this.apiUrl);
             return this.apiUrl
         },
         setApiUrl(url) {
@@ -35,15 +34,15 @@ document.addEventListener('alpine:init', () => {
         upsert(id, value) {
             let exists = false;
             // Update if exists
-            this.changes = this.changes.map(function(change) {
+            this.changes = this.changes.map(function (change) {
                 if (change.id === id) {
                     exists = true;
-                    return{
+                    return {
                         id: id,
                         value: value
                     }
                 } else {
-                  return change;
+                    return change;
                 }
             });
             // Add if not exists
@@ -57,39 +56,59 @@ document.addEventListener('alpine:init', () => {
     })
     Alpine.bind('field', () => ({
         '@change'(event) {
+            console.log('change');
             Alpine.store('form').upsert(event.target.attributes.name.value, event.target.value)
         },
-        '@init'(event) {
-            // Wait for all fields (specially for select) to be initialized
-                Alpine.store('form').upsert(event.target.attributes.name.value, event.target.value)
-            ;
+        '@saveThisField'(event) {
+            console.log('saveThisField');
+            Alpine.store('form').upsert(event.target.attributes.name.value, event.target.value)
+            saveContents([{
+                id: event.target.attributes.name.value,
+                value: event.target.value
+            }], () => {
+            });
         },
     }))
     Alpine.bind('submit', () => ({
         '@click.throttle.1000ms'(event) {
-            let xhr = new XMLHttpRequest();
-            let data = Alpine.store('form').allChanges();
-            let body = JSON.stringify({"data": data});
+            console.log('submit ->');
             const parentContentId = event.target.attributes['parent-content-id'].value
             const hasParent = event.target.attributes['has-parent'].value
-
-            xhr.withCredentials = true;
-            xhr.addEventListener("readystatechange", function() {
-                if (this.status >= 300) {
-                    console.log("Error: " + this.responseText);
-                    return;
-                }
-                // if parentContentId string has ~ go back
+            let data = Alpine.store('form').allChanges();
+            saveContents(data, () => {
+                // if parentContentId string has ~ go back (to the list)
                 if (hasParent) {
                     location.href = '/admin' + parentContentId
                 } else {
                     location.reload()
                 }
             });
-            xhr.open("PATCH", Alpine.store('config').getApiUrl() + "/content/contents");
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.send(body);
         },
     }))
+
+    function saveContents(data, ready) {
+        // Wait for config
+        let configWaiter = setInterval(function () {
+            let apiUrl = Alpine.store('config').getApiUrl();
+            if (apiUrl === undefined) {
+                return;
+            }
+            clearInterval(configWaiter);
+            // Do the request
+            let xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            xhr.addEventListener("readystatechange", function () {
+                if (this.status >= 300) {
+                    console.log("Error: " + this.responseText);
+                    return;
+                }
+                ready()
+            });
+            xhr.open("PATCH", apiUrl + "/content/contents");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("Accept", "application/json");
+            let body = JSON.stringify({"data": data});
+            xhr.send(body);
+        }, 200);
+    }
 })
