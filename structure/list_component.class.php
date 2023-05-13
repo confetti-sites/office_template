@@ -6,6 +6,7 @@ namespace Confetti\Components;
 
 use ArrayIterator;
 use Confetti\Helpers\ComponentEntity;
+use Confetti\Helpers\ComponentStandard;
 use Confetti\Helpers\ComponentStore;
 use Confetti\Helpers\ContentStore;
 use IteratorAggregate;
@@ -21,22 +22,26 @@ return new class implements IteratorAggregate {
      */
     protected array $items = [];
 
+    protected string $key;
+
     /** @noinspection DuplicatedCode */
     public function __construct(
-        protected string         $key,
+        protected string         $id,
         protected ComponentStore $componentStore,
         protected ContentStore   $contentStore,
     )
     {
-        $this->key   .= '~';
-        $updatedAtIds = $this->contentStore->whereIn($this->key, ['updated_at']);
-        if (count($updatedAtIds) === 0) {
+        $this->id     .= '~';
+        $this->key = ComponentStandard::keyFromId($this->id);
+
+        $isCreatedItems = $this->contentStore->whereIn($this->id, ['is_created']);
+        if (count($isCreatedItems) === 0) {
             $this->items = $this->getFakeComponents();
             return;
         }
 
-        foreach ($updatedAtIds as $item) {
-            $id = preg_replace('/\/updated_at$/', '', $item['id'], 1);
+        foreach ($isCreatedItems as $item) {
+            $id = preg_replace('/\/is_created$/', '', $item['id'], 1);
             $this->items[] = new Map($id, $this->componentStore, $this->contentStore);
         }
     }
@@ -54,6 +59,7 @@ return new class implements IteratorAggregate {
         $columns = $component->getDecoration('columns')['columns'] ?? throw new \Exception('Error: No columns defined. Use ->columns([]) to define columns. In ' . $component->source);
         $fields  = array_map(static fn($column) => $column['id'], $columns);
 
+        $fields[] = 'updated_at';
         $data = $contentStore->whereIn($contentId, $fields);
 
         // Make rows by grouping on the id minus the relative id
@@ -139,6 +145,8 @@ return new class implements IteratorAggregate {
 
     private function getFakeComponents(): array
     {
+        // @todo move to utils
+        // @todo multiple lists
         $component = $this->componentStore->find($this->key);
 
         $max = $component->getDecoration('max')['value'] ?? 100;
@@ -151,7 +159,7 @@ return new class implements IteratorAggregate {
         while ($i <= $amount) {
             $i++;
             $items[] = new Map(
-                $this->key,
+                $this->id,
                 $this->componentStore,
                 $this->contentStore,
             );

@@ -22,9 +22,11 @@
         @foreach($rows as $parentId => $row)
             <tr>
                 @foreach($row as $content)
-                    <td>
-                        {{ $content['value'] }}
-                    </td>
+                    @if(!str_ends_with($content['id'], 'is_created'))
+                        <td>
+                            {{ $content['value'] }}
+                        </td>
+                    @endif
                 @endforeach
                 <td>
                     <button
@@ -61,7 +63,7 @@
 
             let xhr = new XMLHttpRequest();
             xhr.withCredentials = true;
-            xhr.addEventListener("readystatechange", function() {
+            xhr.addEventListener("readystatechange", function () {
                 if (this.status >= 300) {
                     console.log("Error: " + this.responseText);
                     return;

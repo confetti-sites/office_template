@@ -13,11 +13,11 @@ use Confetti\Helpers\HasMapInterface;
 return new class extends ComponentStandard implements HasMapInterface {
     public function get(): string
     {
-        $component = $this->componentStore->findOrNull($this->key);
+        $component = $this->componentStore->findOrNull($this->id);
         if ($component !== null) {
             return $this->getValueFromOptions($component);
         }
-        $component = $this->componentStore->find($this->key . '/-');
+        $component = $this->componentStore->findOrNull($this->id . '/-');
         if ($component !== null) {
             return $this->getValueFromByDirectory($component);
         }
@@ -27,7 +27,7 @@ return new class extends ComponentStandard implements HasMapInterface {
     public function getValueFromOptions(ComponentEntity $component): string
     {
         // Get saved value
-        $content = $this->contentStore->find($this->key);
+        $content = $this->contentStore->find($this->id);
         if ($content !== null) {
             return $content;
         }
@@ -48,7 +48,7 @@ return new class extends ComponentStandard implements HasMapInterface {
     public function getValueFromByDirectory(ComponentEntity $component): string
     {
         // Get saved value
-        $objectPath = $this->contentStore->find($this->key);
+        $objectPath = $this->contentStore->find($this->id);
         if ($objectPath !== null) {
             if (str_ends_with($objectPath, '.blade.php')) {
                 return self::getViewByPath($objectPath);
@@ -87,8 +87,8 @@ return new class extends ComponentStandard implements HasMapInterface {
     public function toMap(): Map
     {
         return new Map(
-            $this->key . '/-',
-            new ComponentStore($this->key . '/-'),
+            $this->id . '/-',
+            new ComponentStore($this->id . '/-'),
             new ContentStore(),
         );
     }

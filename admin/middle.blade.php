@@ -27,8 +27,8 @@
         @php($suffix = str_replace($componentKey, '', $component->key))
         @include("structure.{$component->type}_component_admin", ['componentStore' => $componentStore, 'component' => $component, 'contentStore' => $contentStore, 'contentId' => $currentContentId . $suffix])
     @endforeach
-    {{-- Ensure that we have updated_at field on every parent key --}}
-    <input type="text" name="{{ $currentContentId }}/updated_at" value="{{ time() }}" x-bind="field" x-init="$dispatch('saveThisField')">
+    {{-- Ensure that we have is_created field on every parent key --}}
+    <input type="hidden" name="{{ $currentContentId }}/is_created" value="true" x-bind="field" x-init="$dispatch('saveThisField')">
     <button
             class="flex items-center justify-between w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             parent-content-id="{{ $parentContentId }}"
