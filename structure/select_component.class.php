@@ -13,11 +13,11 @@ use Confetti\Helpers\HasMapInterface;
 return new class extends ComponentStandard implements HasMapInterface {
     public function get(): string
     {
-        $component = $this->componentStore->findOrNull($this->id);
+        $component = $this->componentStore->findOrNull($this->key);
         if ($component !== null) {
             return $this->getValueFromOptions($component);
         }
-        $component = $this->componentStore->findOrNull($this->id . '/-');
+        $component = $this->componentStore->findOrNull($this->key . '/-');
         if ($component !== null) {
             return $this->getValueFromByDirectory($component);
         }

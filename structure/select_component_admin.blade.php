@@ -7,7 +7,7 @@
      */
     use Confetti\Components\Select;
 
-    $targetDir = $component->getDecoration('byDirectory')['target'];
+    $targetDir = $component->getDecoration('byDirectory')['target'] ?? '';
     $currentValue = $contentStore->find($component->key) ?? $targetDir . $component->getDecoration('default')['value'] ?? '';
     $options = Select::getAllOptions($component)
     // Use hashId because alpinejs can't handel the / in the key
