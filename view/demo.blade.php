@@ -1,7 +1,8 @@
 @php($demo = section('demo'))
 
 <div class="dark:bg-gray-900">
-    @foreach($demo->list('home_blocks')->columns(['title'])->min(1)->max(6) as $block)
+    @php($blocks = $demo->list('blocks')->columns(['title'])->min(1)->max(6))
+    @foreach($blocks as $block)
         <div class="container py-4 md:flex gap-6">
             @php($position = $block->select('image_position')->options(['left', 'right'])->default('right'))
             <div class="md:w-1/2 opacity-0 py-2" x-intersect="$el.classList.add('slide-in-{{ $position }}')">

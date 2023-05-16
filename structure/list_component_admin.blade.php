@@ -22,11 +22,9 @@
         @foreach($rows as $parentId => $row)
             <tr>
                 @foreach($row as $content)
-                    @if(!str_ends_with($content['id'], 'is_created'))
-                        <td>
-                            {{ $content['value'] }}
-                        </td>
-                    @endif
+                    <td>
+                        {{ $content->value }}
+                    </td>
                 @endforeach
                 <td>
                     <button

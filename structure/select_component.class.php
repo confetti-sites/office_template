@@ -9,6 +9,7 @@ use Confetti\Helpers\ComponentStandard;
 use Confetti\Helpers\ComponentStore;
 use Confetti\Helpers\ContentStore;
 use Confetti\Helpers\HasMapInterface;
+use RuntimeException;
 
 return new class extends ComponentStandard implements HasMapInterface {
     public function get(): string
@@ -29,7 +30,7 @@ return new class extends ComponentStandard implements HasMapInterface {
         // Get saved value
         $content = $this->contentStore->find($this->id);
         if ($content !== null) {
-            return $content;
+            return $content->value;
         }
 
         // Get default value
@@ -48,7 +49,7 @@ return new class extends ComponentStandard implements HasMapInterface {
     public function getValueFromByDirectory(ComponentEntity $component): string
     {
         // Get saved value
-        $objectPath = $this->contentStore->find($this->id);
+        $objectPath = $this->contentStore->find($this->id)?->value;
         if ($objectPath !== null) {
             if (str_ends_with($objectPath, '.blade.php')) {
                 return self::getViewByPath($objectPath);
@@ -57,7 +58,7 @@ return new class extends ComponentStandard implements HasMapInterface {
         }
 
         // Get default view
-        $fileName = $component->getDecoration('default')['value'] ?? throw new \Exception('Error: No default defined. Use ->default(\'filename_without_directory\') to define the default value. In ' . $component->source);
+        $fileName = $component->getDecoration('default')['value'] ?? throw new RuntimeException('Error: No default defined. Use ->default(\'filename_without_directory\') to define the default value. In ' . $component->source);
         $target = $component->getDecoration('byDirectory')['target'];
         $objectPath = $target . '/' . $fileName;
         if (str_ends_with($objectPath, '.blade.php')) {

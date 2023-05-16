@@ -12,7 +12,7 @@ return new class extends ComponentStandard {
         // Get saved value
         $value = $this->contentStore->find($this->id);
         if ($value !== null) {
-            return $value;
+            return $value->value;
         }
 
         // Get default value

@@ -15,9 +15,9 @@ return new class extends ComponentStandard {
     public function toInt(): int
     {
         // Get saved value
-        $value = $this->contentStore->find($this->id);
-        if ($value !== null) {
-            return (int)$value;
+        $content = $this->contentStore->find($this->id);
+        if ($content !== null) {
+            return (int)$content->value;
         }
 
         // Use default value

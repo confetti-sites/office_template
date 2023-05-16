@@ -34,21 +34,19 @@ return new class implements IteratorAggregate {
         $this->id     .= '~';
         $this->key = ComponentStandard::keyFromId($this->id);
 
-        $isCreatedItems = $this->contentStore->whereIn($this->id, ['is_created']);
-        if (count($isCreatedItems) === 0) {
+        $items = $this->contentStore->findMany($this->id);
+        if (count($items) === 0) {
             $this->items = $this->getFakeComponents();
             return;
         }
 
-        foreach ($isCreatedItems as $item) {
-            $id = preg_replace('/\/is_created$/', '', $item['id'], 1);
-            $this->items[] = new Map($id, $this->componentStore, $this->contentStore);
+        foreach ($items as $item) {
+            $this->items[] = new Map($item->id, $this->componentStore, $this->contentStore);
         }
     }
 
     /**
-     * return tag, but with map
-     * @return array<string, Map>
+     * @return array<string, array<string, \Confetti\Helpers\ContentEntity[]>>
      */
     public static function getColumnsAndRows(
         ComponentEntity $component,
@@ -59,15 +57,20 @@ return new class implements IteratorAggregate {
         $columns = $component->getDecoration('columns')['columns'] ?? throw new \Exception('Error: No columns defined. Use ->columns([]) to define columns. In ' . $component->source);
         $fields  = array_map(static fn($column) => $column['id'], $columns);
 
-        $fields[] = 'updated_at';
-        $data = $contentStore->whereIn($contentId, $fields);
+        $data = $contentStore->whereIn($contentId, $fields, true);
 
         // Make rows by grouping on the id minus the relative id
         $rows = [];
         foreach ($data as $item) {
+            // Ensure row exists even if there is no data
+            if ($item->value === '__is_parent') {
+                $rows[$item->id] = $rows[$item->id] ?? [];
+                continue;
+            }
+
             // Trim relative id
             $regex             = '/\/(?:' . implode('|', $fields) . ')$/';
-            $parentId          = preg_replace($regex, '', $item['id'], 1);
+            $parentId          = preg_replace($regex, '', $item->id, 1);
             $rows[$parentId][] = $item;
         }
 
