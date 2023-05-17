@@ -31,7 +31,7 @@ return new class implements IteratorAggregate {
         protected ContentStore   $contentStore,
     )
     {
-        $this->id     .= '~';
+        $this->id  .= '~';
         $this->key = ComponentStandard::keyFromId($this->id);
 
         $items = $this->contentStore->findMany($this->id);
@@ -75,6 +75,37 @@ return new class implements IteratorAggregate {
         }
 
         return [$columns, $rows];
+    }
+
+
+    /**
+     * This function is used to generate an ULID for a part of
+     * a content id. This id is always prefixed with a ~.
+     * Example: '/section/pages/page~' . newId()
+     */
+    public static function newId(): string
+    {
+        $char = '123456789ABCDEFGHJKMNPQRSTVWXYZ';
+        $encodingLength = strlen($char);
+        $desiredLengthTotal = 12;
+        $desiredLengthTime = 7;
+
+        // Encode time
+        $time = time();
+        $out = '';
+        while (strlen($out) < $desiredLengthTime) {
+            $mod = $time % $encodingLength;
+            $out = $char[$mod] . $out;
+            $time = ($time - $mod) / $encodingLength;
+        }
+
+        // Encode random
+        while (strlen($out) < $desiredLengthTotal) {
+            $rand = random_int(0, $encodingLength - 1);
+            $out .= $char[$rand];
+        }
+
+        return $out;
     }
 
     /**
