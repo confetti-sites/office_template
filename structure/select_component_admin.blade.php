@@ -8,10 +8,14 @@
     use Confetti\Components\Select;
 
     $targetDir = $component->getDecoration('byDirectory')['target'] ?? '';
+    if ($targetDir) {
+        $targetDir .= '/';
+    }
     $currentValue = $contentStore->find($component->key) ?? $targetDir . $component->getDecoration('default')['value'] ?? '';
     $options = Select::getAllOptions($component)
     // Use hashId because alpinejs can't handel the / in the key
 @endphp
+Default: {{ $component->getDecoration('default')['value'] ?? '' }}
 <div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">
     <label class="block mt-4 text-sm">
         <span class="">
