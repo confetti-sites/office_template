@@ -20,9 +20,9 @@ return new class extends ComponentStandard implements HasMapInterface {
         }
         $component = $this->componentStore->findOrNull($this->key . '/-');
         if ($component !== null) {
-            return $this->getValueFromByDirectory($component);
+            return $this->getValueFromFileInDirectories($component);
         }
-        return '!!! Error: Component with type `select` need to have decoration `options` or `byDirectory` !!!';
+        return '!!! Error: Component with type `select` need to have decoration `options` or `fileInDirectories` !!!';
     }
 
     public function getValueFromOptions(ComponentEntity $component): string
@@ -46,7 +46,7 @@ return new class extends ComponentStandard implements HasMapInterface {
         return $component->getDecoration('options')['options'][0]['id'];
     }
 
-    public function getValueFromByDirectory(ComponentEntity $component): string
+    public function getValueFromFileInDirectories(ComponentEntity $component): string
     {
         // Get saved value
         $objectPath = $this->contentStore->find($this->id)?->value;
@@ -59,7 +59,7 @@ return new class extends ComponentStandard implements HasMapInterface {
 
         // Get default view
         $fileName = $component->getDecoration('default')['value'] ?? throw new RuntimeException('Error: No default defined. Use ->default(\'filename_without_directory\') to define the default value. In ' . $component->source);
-        $target = $component->getDecoration('byDirectory')['target'];
+        $target = $component->getDecoration('fileInDirectories')['targets'][0] ?? throw new RuntimeException('Error: No target defined. Use ->fileInDirectories([\'target_directory\']) to define the target directory. In ' . $component->source);
         $objectPath = $target . '/' . $fileName;
         if (str_ends_with($objectPath, '.blade.php')) {
             return self::getViewByPath($objectPath);
@@ -67,14 +67,26 @@ return new class extends ComponentStandard implements HasMapInterface {
         return $objectPath;
     }
 
+    public static function getDefaultOption(ComponentEntity $component): string
+    {
+        $value = $component->getDecoration('default')['value'] ?? '';
+        $targetsDir = $component->getDecoration('fileInDirectories')['targets'] ?? [];
+        if (count($targetsDir) > 0) {
+            $value = $targetsDir[0] . '/' . $value;
+        }
+        return $value;
+    }
+
     public static function getAllOptions(ComponentEntity $component): array
     {
         $options = [];
-        if ($component->hasDecoration('byDirectory')) {
-            $target  = $component->getDecoration('byDirectory')['target'];
-            $objects = new ComponentStore($target);
-            foreach ($objects->whereParentKey($target) as $object) {
-                $options[$object->key] = self::fileNameToLabel($object->source->file);
+        if ($component->hasDecoration('fileInDirectories')) {
+            $targets  = $component->getDecoration('fileInDirectories')['targets'];
+            foreach ($targets as $target) {
+                $objects = new ComponentStore($target);
+                foreach ($objects->whereParentKey($target) as $object) {
+                    $options[$object->key] = self::fileNameToLabel($object->source->file);
+                }
             }
         }
         if ($component->hasDecoration('options')) {

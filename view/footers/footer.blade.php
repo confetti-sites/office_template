@@ -55,8 +55,8 @@
                                     </defs>
                                 </svg>
                             </a>
-                            <a href="https://tailus.io" class="mt-2 inline-block text-sm"
-                            >{{ $footer->text('main_subtitle')->min(1)->max(30) }}
+                            <a href="https://tailus.io" class="mt-2 inline-block text-sm">
+                                {{ $footer->text('main_subtitle')->min(1)->max(30) }}
                             </a>
                         </div>
 

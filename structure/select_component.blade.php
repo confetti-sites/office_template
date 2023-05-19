@@ -5,7 +5,7 @@
         name: 'select',
         decorations: [
             Decoration::BY_DIRECTORY->comment('List all files by the directory'),
-            Decoration::DEFAULT->comment('Before saving this will be the default file. When byDirectory is provided, the file must be in the directory.'),
+            Decoration::DEFAULT->comment('Before saving this will be the default file. When fileInDirectories is provided, the file must be in the directory.'),
             Decoration::LABEL->comment('Label is used as a field title in the admin panel'),
             Decoration::OPTIONS->comment('List of options. For now, only values are supported.'),
         ],

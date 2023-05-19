@@ -7,15 +7,10 @@
      */
     use Confetti\Components\Select;
 
-    $targetDir = $component->getDecoration('byDirectory')['target'] ?? '';
-    if ($targetDir) {
-        $targetDir .= '/';
-    }
-    $currentValue = $contentStore->find($component->key) ?? $targetDir . $component->getDecoration('default')['value'] ?? '';
+    $currentValue = $contentStore->find($component->key) ?? Select::getDefaultOption($component);
     $options = Select::getAllOptions($component)
     // Use hashId because alpinejs can't handel the / in the key
 @endphp
-Default: {{ $component->getDecoration('default')['value'] ?? '' }}
 <div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">
     <label class="block mt-4 text-sm">
         <span class="">
@@ -32,9 +27,9 @@ Default: {{ $component->getDecoration('default')['value'] ?? '' }}
             @endforeach
         </select>
     </label>
-    @if($component->hasDecoration('byDirectory'))
-        @foreach($componentStore->whereParentKey($component->key) as $child)
-            {{-- @todo move to utils --}}
+    @if($component->hasDecoration('fileInDirectories'))
+    @php($children = $componentStore->whereParentKey($component->key))
+        @foreach($children as $child)
             @php($suffix = str_replace($component->key, '', $child->key))
             <div x-show="{{ hashId($child->getDecoration('condition')['pointer_key']) }} == '{{ $child->getDecoration('condition')['pointed_key'] }}'">
                 @include("structure.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child, 'contentId' => $contentId . $suffix])
