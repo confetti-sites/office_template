@@ -8,7 +8,7 @@
     use Confetti\Components\Select;
 
     $currentValue = $contentStore->find($contentId) ?? Select::getDefaultOption($component);
-    $options = Select::getAllOptions($component)
+    $options = Select::getAllOptions($componentStore, $component);
     // Use hashId because alpinejs can't handel the / in the key
 @endphp
 <div x-data="{ {{ hashId($component->key) }}: '{{ $currentValue }}' }">

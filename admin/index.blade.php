@@ -1,5 +1,5 @@
 @php
-    $componentStore = new \Confetti\Helpers\ComponentStore('/section');
+    $componentStore = new \Confetti\Helpers\ComponentStore('/');
     $currentContentId = str_replace('/admin', '', request()->uri());
     $contentStore = new \Confetti\Helpers\ContentStore($currentContentId);
     $menuComponents = $componentStore->whereParentKey('/section');

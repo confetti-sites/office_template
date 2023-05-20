@@ -58,9 +58,7 @@ return new class extends ComponentStandard implements HasMapInterface {
         }
 
         // Get default view
-        $fileName = $component->getDecoration('default')['value'] ?? throw new RuntimeException('Error: No default defined. Use ->default(\'filename_without_directory\') to define the default value. In ' . $component->source);
-        $target = $component->getDecoration('fileInDirectories')['targets'][0] ?? throw new RuntimeException('Error: No target defined. Use ->fileInDirectories([\'target_directory\']) to define the target directory. In ' . $component->source);
-        $objectPath = $target . '/' . $fileName;
+        $objectPath = $component->getDecoration('default')['value'] ?? throw new RuntimeException('Error: No default defined. Use ->default(\'filename_without_directory\') to define the default value. In ' . $component->source);
         if (str_ends_with($objectPath, '.blade.php')) {
             return self::getViewByPath($objectPath);
         }
@@ -69,12 +67,7 @@ return new class extends ComponentStandard implements HasMapInterface {
 
     public static function getDefaultOption(ComponentEntity $component): string
     {
-        $value = $component->getDecoration('default')['value'] ?? '';
-        $targetsDir = $component->getDecoration('fileInDirectories')['targets'] ?? [];
-        if (count($targetsDir) > 0) {
-            $value = $targetsDir[0] . '/' . $value;
-        }
-        return $value;
+        return $component->getDecoration('default')['value'] ?? '';
     }
 
     public static function getAllOptions(ComponentEntity $component): array
