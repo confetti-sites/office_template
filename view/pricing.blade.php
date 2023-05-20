@@ -34,7 +34,7 @@ class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[9
               class="border-primary shadow-pricing relative z-10 mb-10 overflow-hidden rounded-xl border border-opacity-20 bg-white py-10 px-8 sm:p-12 lg:py-10 lg:px-6 xl:p-12"
       >
         <h2 class="text-primary mb-4 block text-lg font-semibold">
-          Learning, testing, and developing
+          Learning, testing and developing
         </h2>
         <span class="text-dark mb-5 text-[42px] font-bold">
           Free
@@ -218,19 +218,13 @@ class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[9
         >
           A website for a local club, small business or a busy blog.
         </p>
-        <div class="mb-7">
+        <div>
           <p class="text-body-color mb-1 text-base leading-loose">Backups</p>
           <p class="text-body-color mb-1 text-base leading-loose">SSL-certificate</p>
           <p class="text-body-color mb-1 text-base leading-loose">Multiple domains</p>
           <p class="text-body-color mb-1 text-base leading-loose">Test environments</p>
           <p class="text-body-color mb-1 text-base leading-loose">Secured with Auth0</p>
         </div>
-        <a
-          href="javascript:void(0)"
-          class="text-primary hover:bg-primary hover:border-primary block w-full rounded-md border border-[#D4DEFF] bg-transparent p-4 text-center text-base font-semibold transition hover:text-white"
-        >
-          Publish your website
-        </a>
         <div>
           <span class="absolute right-0 top-7 z-[-1]">
             <svg
@@ -442,32 +436,15 @@ class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[9
         class="border-primary shadow-pricing relative z-10 mb-10 overflow-hidden rounded-xl border border-opacity-20 bg-white py-10 px-8 sm:p-12 lg:py-10 lg:px-6 xl:p-12"
       >
         <h2 class="text-primary mb-4 block text-lg font-semibold">
-          Business
+          High traffic website
         </h2>
         <div class="text-dark mb-5 text-[42px] font-bold">
           + €24
           <span class="text-body-color text-base font-medium"> / month<br>for every additional server</span>
         </div>
-        <p class="text-body-color mb-8 border-b border-[#F2F2F2] pb-8 text-base">
+        <p class="text-body-color mb-8 pb-8 text-base">
             Do you have a high traffic website? Let us handle the stress for you. So you can scale your business.
         </p>
-        <div class="mb-7">
-          <p class="text-body-color mb-1 text-base leading-loose">
-            Auto scale
-          </p>
-          <p class="text-body-color mb-1 text-base leading-loose">
-            Multi region
-          </p>
-          <p class="text-body-color mb-1 text-base leading-loose">
-            Priority support
-          </p>
-        </div>
-        <a
-                href="javascript:void(0)"
-                class="text-primary hover:bg-primary hover:border-primary block w-full rounded-md border border-[#D4DEFF] bg-transparent p-4 text-center text-base font-semibold transition hover:text-white"
-        >
-          Enable auto-scaling
-        </a>
         <div>
           <span class="absolute right-0 top-7 z-[-1]">
             <svg
