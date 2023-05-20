@@ -84,7 +84,7 @@ return new class extends ComponentStandard implements HasMapInterface {
             $targets  = $component->getDecoration('fileInDirectories')['targets'];
             foreach ($targets as $target) {
                 $objects = new ComponentStore($target);
-                foreach ($objects->whereParentKey($target) as $object) {
+                foreach ($objects->whereMatch($target) as $object) {
                     $options[$object->key] = self::fileNameToLabel($object->source->file);
                 }
             }

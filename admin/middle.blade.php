@@ -4,13 +4,11 @@
      * @var \Confetti\Helpers\ComponentStore $componentStore
      * @var string $currentContentId
      */
-    // @todo move to utils
-    // @todo multiple lists
     $componentKey = \Confetti\Helpers\ComponentStandard::keyFromId($currentContentId);
     // Get parent content id
-    // (\/[A-Z0-9_]+\/-)? - remove optional target key
-    // \/[\w~-]+ - remove current relative key
-    $parentContentId = preg_replace('/(\/[A-Z0-9_]+\/-)?\/[\w~-]+$/', '', $currentContentId);
+    // \w|~ remove word characters (with ulid)
+    // /-/ remove target ids
+    $parentContentId = preg_replace('#/(\w|~|/-/)+$#', '', $currentContentId);
     $hasParent = str_contains($currentContentId, '~');
     $components = $componentStore->whereParentKey($componentKey);
 @endphp

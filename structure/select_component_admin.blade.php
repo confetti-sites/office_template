@@ -7,7 +7,7 @@
      */
     use Confetti\Components\Select;
 
-    $currentValue = $contentStore->find($component->key) ?? Select::getDefaultOption($component);
+    $currentValue = $contentStore->find($contentId) ?? Select::getDefaultOption($component);
     $options = Select::getAllOptions($component)
     // Use hashId because alpinejs can't handel the / in the key
 @endphp
