@@ -4,7 +4,7 @@ document.addEventListener('alpine:init', () => {
         apiUrl: undefined,
         init() {
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', '/object/admin/config.blade.php', true);
+            xhr.open('GET', '/admin/config.blade.php', true);
             xhr.responseType = 'json';
             xhr.onload = function () {
                 let status = xhr.status;

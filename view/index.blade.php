@@ -3,11 +3,11 @@
     <title>Confetti CMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/generated/view/tailwind.output.css"/>
-    <link rel="stylesheet" href="/object/view/assets/css/fonts.css"/>
+    <link rel="stylesheet" href="/view/assets/css/fonts.css"/>
     <script defer>
         @stack('scripts_*')
     </script>
-    <script src="/object/view/assets/scripts/init-alpine.js"></script>
+    <script src="/view/assets/scripts/init-alpine.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@marcreichel/alpine-auto-animate@latest/dist/alpine-auto-animate.min.js" defer></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -24,7 +24,7 @@
         @endif
 
         @php($footer = section('footer'))
-        @php($target = $footer->select('template')->fileInDirectories(['/view/footers/*'])->default('/object/view/footers/footer.blade.php'))
+        @php($target = $footer->select('template')->fileInDirectories(['/view/footers/*.blade.php'])->default('/view/footers/footer.blade.php'))
 
         @include($target->get(), ['parent' => $target])
     </body>

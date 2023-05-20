@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="/generated/admin/tailwind.output.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100" rel="stylesheet" />
 
-    <script src="/object/admin/assets/js/thema.js" defer></script>
-    <script src="/object/admin/assets/js/form.js" defer></script>
-    <script src="/object/admin/assets/js/alpine.min.js" defer></script>
+    <script src="/admin/assets/js/thema.js" defer></script>
+    <script src="/admin/assets/js/form.js" defer></script>
+    <script src="/admin/assets/js/alpine.min.js" defer></script>
 </head>
 
 <body class="text-gray-700 dark:text-gray-400">

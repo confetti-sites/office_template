@@ -49,20 +49,20 @@ return new class extends ComponentStandard implements HasMapInterface {
     public function getValueFromFileInDirectories(ComponentEntity $component): string
     {
         // Get saved value
-        $objectPath = $this->contentStore->find($this->id)?->value;
-        if ($objectPath !== null) {
-            if (str_ends_with($objectPath, '.blade.php')) {
-                return self::getViewByPath($objectPath);
+        $filePath = $this->contentStore->find($this->id)?->value;
+        if ($filePath !== null) {
+            if (str_ends_with($filePath, '.blade.php')) {
+                return self::getViewByPath($filePath);
             }
-            return $objectPath;
+            return $filePath;
         }
 
         // Get default view
-        $objectPath = $component->getDecoration('default')['value'] ?? throw new RuntimeException('Error: No default defined. Use ->default(\'filename_without_directory\') to define the default value. In ' . $component->source);
-        if (str_ends_with($objectPath, '.blade.php')) {
-            return self::getViewByPath($objectPath);
+        $filePath = $component->getDecoration('default')['value'] ?? throw new RuntimeException('Error: No default defined. Use ->default(\'filename_without_directory\') to define the default value. In ' . $component->source);
+        if (str_ends_with($filePath, '.blade.php')) {
+            return self::getViewByPath($filePath);
         }
-        return $objectPath;
+        return $filePath;
     }
 
     public static function getDefaultOption(ComponentEntity $component): string
@@ -70,15 +70,14 @@ return new class extends ComponentStandard implements HasMapInterface {
         return $component->getDecoration('default')['value'] ?? '';
     }
 
-    public static function getAllOptions(ComponentEntity $component): array
+    public static function getAllOptions(ComponentStore $store, ComponentEntity $component): array
     {
         $options = [];
         if ($component->hasDecoration('fileInDirectories')) {
             $targets  = $component->getDecoration('fileInDirectories')['targets'];
             foreach ($targets as $target) {
-                $objects = new ComponentStore($target);
-                foreach ($objects->whereMatch($target) as $object) {
-                    $options[$object->key] = self::fileNameToLabel($object->source->file);
+                foreach ($store->whereMatch($target) as $file) {
+                    $options[$file->key] = self::fileNameToLabel($file->source->file);
                 }
             }
         }
@@ -102,7 +101,6 @@ return new class extends ComponentStandard implements HasMapInterface {
     private static function getViewByPath(string $path): string
     {
         $path = str_replace('.blade.php', '', $path);
-        $path  = preg_replace('/^\/object/', '', $path);
         return str_replace('/', '.', $path);
     }
 
