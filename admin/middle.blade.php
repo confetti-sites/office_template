@@ -32,7 +32,15 @@
             parent-content-id="{{ $parentContentId }}"
             has-parent="{{ $hasParent }}"
             x-bind="submit"
+            x-show="countFields() > 1"
     >
         Save
     </button>
 </div>
+@pushonce('script_middle')
+    <script>
+        function countFields() {
+            return document.querySelectorAll("[x-bind='field']").length;
+        }
+    </script>
+@endpushonce

@@ -7,21 +7,22 @@
      */
     use Confetti\Components\List_;
 @endphp
-<div class="container px-6 py-4 mx-auto grid">
+<!-- border rounded -->
+<div class="container px-6 py-4 m-10 mx-auto grid border border-purple-600 rounded-lg">
     @php([$columns, $rows] = List_::getColumnsAndRows($component, $contentStore, $contentId))
     <table class="table-auto">
         <thead class="text-left">
         <tr>
             @foreach($columns as $column)
-                <th>{{ $column['label'] }}</th>
+                <th class="p-3">{{ $column['label'] }}</th>
             @endforeach
         </tr>
         </thead>
         <tbody class="table-auto">
         @foreach($rows as $parentId => $row)
-            <tr>
+            <tr class="border border-purple-400">
                 @foreach($row as $content)
-                    <td>
+                    <td class="p-3">
                         {{ $content->value }}
                     </td>
                 @endforeach
@@ -29,13 +30,13 @@
                     <button
                             @click="deleteRow"
                             name="{{ $parentId }}"
-                            class="float-right justify-between px-2 py-1 mb-5 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                            class="float-right justify-between px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                     >
                         Delete
                     </button>
                     <a
                             href="/admin{{ $parentId }}"
-                            class="float-right justify-between px-2 py-1 mb-5  text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                            class="float-right justify-between px-2 py-1 m-3 ml-0 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                     >
                         Edit
                     </a>
