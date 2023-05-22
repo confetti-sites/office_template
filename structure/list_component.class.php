@@ -148,8 +148,6 @@ return new class implements IteratorAggregate {
 
     private function getFakeComponents(): array
     {
-        // @todo move to utils
-        // @todo multiple lists
         $component = $this->componentStore->find($this->key);
 
         $max = $component->getDecoration('max')['value'] ?? 100;

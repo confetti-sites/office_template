@@ -11,16 +11,16 @@
 <div class="container px-6 py-4 m-10 mx-auto grid border border-purple-600 rounded-lg">
     @php([$columns, $rows] = List_::getColumnsAndRows($component, $contentStore, $contentId))
     <table class="table-auto">
-        <thead class="text-left">
-        <tr>
-            @foreach($columns as $column)
-                <th class="p-3">{{ $column['label'] }}</th>
-            @endforeach
-        </tr>
+        <thead class="text-left border-b border-purple-300">
+            <tr>
+                @foreach($columns as $column)
+                    <th class="p-3">{{ $column['label'] }}</th>
+                @endforeach
+            </tr>
         </thead>
         <tbody class="table-auto">
         @foreach($rows as $parentId => $row)
-            <tr class="border border-purple-400">
+            <tr class="border-b border-purple-300">
                 @foreach($row as $content)
                     <td class="p-3">
                         {{ $content->value }}
@@ -47,7 +47,7 @@
     </table>
     <label class="block mt-4">
         <a
-                class="flex items-center justify-center px-2 py-1 mb-5 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                class="float-right justify-between px-2 py-1 m-2 ml-0 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                 href="/admin{{ $contentId . newId() }}"
         >
             + Add {{ $component->getDecoration('label')['value'] }}
