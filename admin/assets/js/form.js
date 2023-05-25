@@ -4,12 +4,13 @@ document.addEventListener('alpine:init', () => {
         apiUrl: undefined,
         init() {
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', '/admin/config.blade.php', true);
+            xhr.open('GET', '/config.blade.php', true);
             xhr.responseType = 'json';
             xhr.onload = function () {
                 let status = xhr.status;
                 if (status === 200) {
                     Alpine.store('config').setApiUrl(xhr.response.api_url);
+                    document.dispatchEvent(new CustomEvent('config:init'));
                 } else {
                     console.error(status, xhr.response);
                     Alpine.store('config').setApiUrl('error_from_config');
