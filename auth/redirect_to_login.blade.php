@@ -1,4 +1,7 @@
-<div class="flex items-center justify-center w-full h-screen bg-gray-50 dark:bg-gray-900">
+<div
+        class="flex items-center justify-center w-full h-screen bg-gray-50 dark:bg-gray-900"
+        x-data="{ show: false }" x-show="show" x-init="setTimeout(() => show = true, 3000)"
+>
     Redirect to login page...
 </div>
 @pushonce('script_login_redirect')
