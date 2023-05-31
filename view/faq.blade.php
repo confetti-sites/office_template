@@ -36,7 +36,7 @@
                         How long will Confetti remain completely free?
                     </h3>
                     <p class="text-gray-500 dark:text-gray-400">
-                        "Move fast and break things" is a motto for many startups. But since we don't have a deadline, we have plenty of time to first establish a solid foundation.
+                        "Move fast and break things" is a motto for many startups. But since we don't have a deadline, we have plenty of time to first establish a solid foundation. We want to make sure that Confetti is a stable and reliable platform before we start charging for it.
                     </p>
                 </div>
             </div>

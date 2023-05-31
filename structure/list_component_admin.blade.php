@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody class="table-auto">
-        @foreach($rows as $parentId => $row)
+        @forelse($rows as $parentId => $row)
             <tr class="border-b border-purple-300">
                 @foreach($row as $content)
                     <td class="p-3">
@@ -42,7 +42,13 @@
                     </a>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td class="p-2">
+                    {{ $component->getDecoration('label')['value'] }} not found. Click on "+ Add {{ $component->getDecoration('label')['value'] }}" to create one.
+                </td>
+            </tr>
+        @endforelse
         </tbody>
     </table>
     <label class="block mt-4">
