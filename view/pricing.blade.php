@@ -222,6 +222,7 @@ class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[9
           <p class="text-body-color mb-1 text-base leading-loose">Backups</p>
           <p class="text-body-color mb-1 text-base leading-loose">SSL-certificate</p>
           <p class="text-body-color mb-1 text-base leading-loose">Multiple domains</p>
+          <p class="text-body-color mb-1 text-base leading-loose">Private network</p>
           <p class="text-body-color mb-1 text-base leading-loose">Test environments</p>
           <p class="text-body-color mb-1 text-base leading-loose">Secured with Auth0</p>
         </div>
@@ -440,7 +441,7 @@ class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[9
         </h2>
         <div class="text-dark mb-5 text-[42px] font-bold">
           + €24
-          <span class="text-body-color text-base font-medium"> / month<br>for every additional server</span>
+          <span class="text-body-color text-base font-medium"> / month<br>for every additional resource</span>
         </div>
         <p class="text-body-color mb-8 pb-8 text-base">
             Do you have a high traffic website? Let us handle the stress for you. So you can scale your business.
