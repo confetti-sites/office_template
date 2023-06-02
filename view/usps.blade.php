@@ -1,6 +1,6 @@
-<div class="dark:bg-gray-900/80">
+<div class="bg-gray-50 dark:bg-gray-900/80">
 <div
-      class="container pb-28 md:flex md:items-center dark:pt-28"
+      class="container pb-12 md:flex md:items-center pt-12"
     >
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <div
