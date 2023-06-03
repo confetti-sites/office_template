@@ -8,7 +8,9 @@
         <div class="relative">
             <div class="flex mt-8 mb-10 space-x-4 text-xl border-b border-gray-300">
                 @foreach($cases as $tapNr => $case)
-                    <div class="hover:text-indigo-600 py-2 p-2 cursor-pointer" :class="{'text-indigo-600 border-b border-indigo-600': tab == '{{ $tapNr }}'}" @click="tab = '{{ $tapNr }}'">
+                    <div class="hover:text-indigo-600 py-2 p-2 cursor-pointer"
+                         :class="{'text-indigo-600 border-b border-indigo-600': tab == '{{ $tapNr }}'}"
+                         @click="tab = '{{ $tapNr }}'">
                         <span>{{ $case->text('title')->min(1)->max(20) }}</span>
                     </div>
                 @endforeach
@@ -21,8 +23,8 @@
                                 <h3>{{ $column->text('title')->min(1)->max(50) }}</h3>
                             </div>
                             @foreach($column->list('step')->columns(['description'])->min(1)->max(10) as $nr => $step)
-                                <div>
-                                    <div class="p-4 bg-white rounded-lg flex items-center justify-between space-x-8">
+                                <div class="bg-white rounded-lg">
+                                    <div class="p-4 flex items-center justify-between space-x-8">
                                         <div class="rounded-lg p-2 bg-blue-300 text-white">
                                             Step {{ $nr + 1 }}
                                         </div>
@@ -30,6 +32,12 @@
                                             {{ $step->text('description')->min(1)->max(100) }}
                                         </div>
                                     </div>
+                                    @php($example = $step->text('example')->default(''))
+                                    @if($example != '')
+                                        <div class="pb-3 text-xs text-center text-gray-500">
+                                            {{ $example }}
+                                        </div>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
