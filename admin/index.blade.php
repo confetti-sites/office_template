@@ -48,7 +48,8 @@
             </div>
         @else
             <div class="flex items-center justify-center w-full h-screen bg-gray-50 dark:bg-gray-900">
-                You are not allowed to access this page. Go back to&nbsp;<a href="/" class="underline">the home page</a>.
+                You are not allowed to access this page. Go back to&nbsp;<a href="/" class="underline">the home page</a>
+                <span>&nbsp;or <a onclick="document.cookie = 'access_token=; Max-Age=0;';location.reload()" class="underline cursor-pointer">retry to login</a>.</span>
             </div>
         @endcan
     @endguest
