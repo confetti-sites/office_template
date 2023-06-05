@@ -13,13 +13,13 @@
 
         $accessToken = $contents['auth']['access_token'];
         setcookie('access_token', $accessToken, [
-            'expires' => (new DateTimeImmutable('now + 10 hours'))->format(DateTimeInterface::RFC7231),
+            'expires' => time()+60*60*10,
             'path' => '/',
         ]);
         $redirectAfterLogin = request()->cookie('redirect_after_login') ?? '/';
         // Clear cookie
         setcookie('redirect_after_login', '', [
-            'expires' => (new DateTimeImmutable('now - 1 hour'))->format(DateTimeInterface::RFC7231),
+            'expires' => time()+60*60,
             'path' => '/',
         ]);
         header('Location: ' . $redirectAfterLogin);

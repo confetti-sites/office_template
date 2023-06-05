@@ -28,13 +28,13 @@
                                         <div class="rounded-lg p-2 bg-blue-300 text-white">
                                             Step {{ $nr + 1 }}
                                         </div>
-                                        <div class="flex-1 flex justify-between items-center">
+                                        <div class="flex-1 flex justify-between items-center font-body">
                                             {{ $step->text('description')->min(1)->max(100) }}
                                         </div>
                                     </div>
                                     @php($example = $step->text('example')->default(''))
                                     @if($example != '')
-                                        <div class="pb-3 text-xs text-center text-gray-500">
+                                        <div class="pb-3 text-center text-gray-500 font-body">
                                             {{ $example }}
                                         </div>
                                     @endif

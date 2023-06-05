@@ -25,7 +25,7 @@
     @guest()
         @include('auth.redirect_to_login')
     @else
-{{--        @can('admin')--}}
+        @can('admin')
             <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen}">
                 <!-- Desktop sidebar -->
                 <aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block">
@@ -46,11 +46,11 @@
                     </main>
                 </div>
             </div>
-{{--        @else--}}
-{{--            <div class="flex items-center justify-center w-full h-screen bg-gray-50 dark:bg-gray-900">--}}
-{{--                You are not allowed to access this page. Go back to&nbsp;<a href="/" class="underline">the home page</a>.--}}
-{{--            </div>--}}
-{{--        @endcan--}}
+        @else
+            <div class="flex items-center justify-center w-full h-screen bg-gray-50 dark:bg-gray-900">
+                You are not allowed to access this page. Go back to&nbsp;<a href="/" class="underline">the home page</a>.
+            </div>
+        @endcan
     @endguest
     @stack('script_*')
 </body>
