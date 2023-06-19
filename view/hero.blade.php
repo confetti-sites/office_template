@@ -4,7 +4,7 @@
     >
       <div class="md:w-1/2" x-intersect="$el.classList.add('slide-in-top')">
         <h1 class="text-6xl font-bold leading-tight dark:text-white text-gray-900">
-          Confetti cms
+          Confetti CMS
         </h1>
         <p class="mt-4 text-xl dark:text-white text-gray-900">
           A developer first framework to build your websites blazing fast

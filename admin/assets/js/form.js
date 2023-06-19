@@ -108,6 +108,7 @@ document.addEventListener('alpine:init', () => {
             xhr.open("PATCH", apiUrl + "/content/contents");
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Authorization", "Bearer " + document.cookie.split('access_token=')[1].split(';')[0]);
             let body = JSON.stringify({"data": data});
             xhr.send(body);
         }, 200);
