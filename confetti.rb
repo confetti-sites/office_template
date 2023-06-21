@@ -5,32 +5,35 @@
 class Confetti < Formula
   desc ""
   homepage "https://confetti-cms.com"
-  version "0.4.13"
+  version "0.4.14"
 
   on_macos do
-    url "https://github.com/confetti-cms/client/releases/download/0.4.13/client_0.4.13_darwin_all.tar.gz"
-    sha256 "2bf85d2457ec415f87d6ad19333c15fe2a740795dc63e3a62043a77612b3e9b5"
+    url "https://github.com/confetti-cms/client/releases/download/0.4.14/client_0.4.14_darwin_all.tar.gz"
+    sha256 "435f483483576b2507b41110b81d061a4fe58c84a16114723fc45d64e5eb60fe"
 
     def install
       binary: confetti
+      bin.install "confetti"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/confetti-cms/client/releases/download/0.4.13/client_0.4.13_linux_arm64.tar.gz"
-      sha256 "f8f9cd150aab8443228cc1e3dfaeb9fef02a82195d42fa7ea79fd1cdeea6c358"
+      url "https://github.com/confetti-cms/client/releases/download/0.4.14/client_0.4.14_linux_arm64.tar.gz"
+      sha256 "f16e0f5c24a5543916f5b7837354cab590220ab3d35471edad1d77c7cfe7c7f8"
 
       def install
         binary: confetti
+        bin.install "confetti"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/confetti-cms/client/releases/download/0.4.13/client_0.4.13_linux_amd64.tar.gz"
-      sha256 "4ecd5d10a1eda47ed4eeb52913d51c2ddeca4151f9776d8729d6f90b157e7c64"
+      url "https://github.com/confetti-cms/client/releases/download/0.4.14/client_0.4.14_linux_amd64.tar.gz"
+      sha256 "db9efd37721a89f1fd5dab703c43b5d2c0588987fa54d637f398c127441fe495"
 
       def install
         binary: confetti
+        bin.install "confetti"
       end
     end
   end
