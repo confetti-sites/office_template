@@ -1,4 +1,4 @@
-FROM ubuntu:23.04 as tailwindcss_admin_2
+FROM ubuntu:23.04 as tailwind_admin
 
 WORKDIR /var/src
 
