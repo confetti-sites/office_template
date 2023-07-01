@@ -1,6 +1,6 @@
 FROM ubuntu:23.04 as tailwindcss_admin
 
-WORKDIR /etc
+WORKDIR /var/src
 
 RUN apt-get -y update
 RUN apt-get -y install curl
@@ -9,8 +9,8 @@ RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/downlo
 RUN chmod +x tailwindcss-linux-x64
 RUN mv tailwindcss-linux-x64 tailwindcss
 
-CMD cd /var/repository && /etc/tailwindcss \
--i ./assets/css/tailwind.css \
--c ./tailwind.config.js \
+CMD /var/src/tailwindcss \
+-i /var/src/assets/css/tailwind.css \
+-c /var/src/tailwind.config.js \
 -o /var/generated/admin/tailwind.output.css \
 --watch
