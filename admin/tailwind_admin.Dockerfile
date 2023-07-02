@@ -5,7 +5,7 @@ WORKDIR /var/src
 RUN apt-get -y update
 RUN apt-get -y install curl
 
-COPY ./ ./
+COPY . ./
 RUN pwd
 RUN ls -la
 
