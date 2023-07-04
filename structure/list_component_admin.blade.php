@@ -77,6 +77,7 @@
             xhr.open("DELETE", Alpine.store('config').getApiUrl() + "/content/contents?id_prefix=" + idPrefix);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Authorization", "Bearer " + document.cookie.split('access_token=')[1].split(';')[0]);
             xhr.send();
         }
     </script>
