@@ -1,6 +1,6 @@
 FROM ubuntu:23.04 as tailwindcss_admin
 
-WORKDIR /src2
+WORKDIR /src
 COPY . .
 
 RUN apt-get -y update
@@ -15,7 +15,7 @@ RUN chmod +x tailwindcss-linux-x64
 RUN mv tailwindcss-linux-x64 /bin/tailwindcss
 
 CMD /bin/tailwindcss \
--i assets/css/tailwind.css \
--c tailwind.config.js \
--o tailwind.output.css \
+-i /src/assets/css/tailwind.css \
+-c /src/tailwind.config.js \
+-o /src/tailwind.output.css \
 --watch
