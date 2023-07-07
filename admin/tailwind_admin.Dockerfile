@@ -1,6 +1,6 @@
 FROM ubuntu:23.04 as tailwindcss_admin
 
-WORKDIR /src
+WORKDIR /src2
 COPY . .
 
 RUN apt-get -y update
