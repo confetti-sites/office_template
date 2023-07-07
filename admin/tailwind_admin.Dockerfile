@@ -1,6 +1,7 @@
 FROM ubuntu:23.04 as tailwindcss_admin
 
-WORKDIR /var/test
+WORKDIR /src
+COPY . .
 
 RUN apt-get -y update
 RUN apt-get -y install curl
