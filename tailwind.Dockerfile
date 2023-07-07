@@ -1,4 +1,7 @@
-FROM ubuntu:23.04 as tailwindcss
+FROM ubuntu:23.04 as tailwindcss_admin
+
+WORKDIR /src
+COPY . .
 
 RUN apt-get -y update
 RUN apt-get -y install curl
@@ -8,7 +11,7 @@ RUN chmod +x tailwindcss-linux-x64
 RUN mv tailwindcss-linux-x64 /bin/tailwindcss
 
 CMD /bin/tailwindcss \
--i view/assets/css/tailwind.css \
--c view/tailwind.config.js \
--o view/tailwind.output.css \
+-i /src/view/assets/css/tailwind.css \
+-c /src/view/tailwind.config.js \
+-o /src/view/tailwind.output.css \
 --watch
