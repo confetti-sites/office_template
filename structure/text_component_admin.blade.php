@@ -16,3 +16,24 @@
             placeholder="{{ $component->getDecoration('placeholder')['value'] }}"
             name="{{ $contentId }}">{{ $contentStore->find($contentId) ?? $component->getDecoration('default')['value'] }}</textarea>
 </label>
+
+<div id="wysywigg" x-bind="field" class="block w-full mt-1 placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:ring-gray focus-within:text-primary-600 dark:focus-within:text-primary-400 dark:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:placeholder-gray-300" ></div>
+
+@pushonce('script_list')
+<script type="module">
+    import { Editor } from 'https://esm.sh/@tiptap/core'
+    import StarterKit from 'https://esm.sh/@tiptap/starter-kit'
+
+    const editor = new Editor({
+      element: document.querySelector('#wysywigg'),
+      extensions: [
+        StarterKit,
+      ],
+      content: '{!! $contentStore->find($contentId) ?? $component->getDecoration('default')['value'] !!}',
+      onUpdate({ editor }) {
+        const html = editor.getHTML();
+        Alpine.store('form').upsert('{{ $contentId }}', html)
+    },
+    })
+</script>
+@endpushonce
