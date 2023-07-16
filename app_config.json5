@@ -1,7 +1,7 @@
 {
   environments: [
     hosts: [
-      "confetti.localhost",
+      "confetti-cms.localhost",
     ]
   ]
 }
