@@ -1,0 +1,7 @@
+{
+  environments: [
+    "hosts": [
+      "confetti.localhost",
+    ]
+  ]
+}
