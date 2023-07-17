@@ -1,7 +1,21 @@
 {
   environments: [
-    hosts: [
-      "confetti-cms.localhost",
-    ]
-  ]
+    {
+      key: 'dev',
+      containers: [
+        {
+          name: 'view-php',
+          hosts: [
+            'confetti-cms.localhost',
+          ],
+        },
+        {
+          name: null,
+          hosts: [
+            'api.confetti-cms.localhost',
+          ],
+        },
+      ],
+    },
+  ],
 }
