@@ -3,6 +3,7 @@
     {
       key: 'dev',
       containers: [
+        // Main view container
         {
           name: 'view-php',
           hosts: [
@@ -12,6 +13,7 @@
             '/',
           ],
         },
+        // All other containers
         {
           hosts: [
             'api.confetti-cms.localhost',
