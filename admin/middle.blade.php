@@ -32,10 +32,11 @@
             parent-content-id="{{ $parentContentId }}"
             has-parent="{{ $hasParent }}"
             x-bind="submit"
-            x-show="countFields() > 1"
-    >
-        Save
+            >
+            {{-- x-show="countFields() > 1" --}}
+        Hoooi Save
     </button>
+    hallo
 </div>
 @pushonce('script_middle')
     <script>
