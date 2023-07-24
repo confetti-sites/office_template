@@ -7,7 +7,7 @@
         {
           name: 'view-php',
           hosts: [
-            'confetti-cms.localhost',
+            'api.confetti-cms.localhost',
           ],
           paths: [
             '/',
