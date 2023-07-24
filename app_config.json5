@@ -13,7 +13,7 @@
             '/',
           ],
         },
-        // All other containers
+        // For all other containers
         {
           hosts: [
             'api.confetti-cms.localhost',
