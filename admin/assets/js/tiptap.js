@@ -83,21 +83,27 @@ document.addEventListener('alpine:init', () => {
           setParagraph() {
             editor.chain().setParagraph().run()
           },
-          setLink(url = '') {
+          openLinkModal() {
             this.modalIsOpen = true;
             this.$nextTick(() => {
                 if (this.$refs.urlInput) {
                     this.$refs.urlInput.focus();
                 }
             });
-              const previousUrl = editor.getAttributes('link').href;
-              if (previousUrl) {
-                this.$nextTick(() => {
-                    this.$refs.urlInput.value = previousUrl;
-                    url = previousUrl;
-                })
-              }
-
+            const currentUrl = editor.getAttributes('link').href;
+            if (currentUrl) {
+              const target = editor.getAttributes('link').target;
+              this.$nextTick(() => {
+                this.$refs.urlInput.text = 'Update link';
+                  this.$refs.urlInput.value = currentUrl;
+                  if (target === '_blank') {
+                      this.$refs.newTabCheckbox.checked = true;
+                  }
+              })
+            }
+          },
+          setLink(urlData = {}) {
+            let {url = '', newTab = null} = urlData;
               // cancelled
               if (url === null) {
                   return
@@ -114,12 +120,15 @@ document.addEventListener('alpine:init', () => {
               return
             }
 
+            const target = newTab ? '_blank' : '_self';
+            const setLinkData = { href: url, target };
+
             // update link
             editor
               .chain()
               .focus()
               .extendMarkRange('link')
-              .setLink({ href: url })
+              .setLink(setLinkData)
               .run()
           },
         }
