@@ -6,6 +6,16 @@ import extensionListItem from 'https://esm.sh/@tiptap/extension-list-item'
 import BulletList from 'https://esm.sh/@tiptap/extension-bullet-list'
 import OrderedList from 'https://esm.sh/@tiptap/extension-ordered-list'
 
+const options = {
+
+}
+
+const setEditor = (options) => {
+    return new Editor({
+
+    })
+}
+
 document.addEventListener('alpine:init', () => {
     Alpine.data('editor', (content, contentId) => {
         let editor;

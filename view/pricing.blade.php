@@ -1,12 +1,12 @@
 <div class="pt-[70px]">
   <!-- Start pricing -->
 <section
-class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]"
+class="relative z-20 overflow-hidden bg-white pt-20 lg:pt-[120px]"
 >
 <div class="container mx-auto">
   <div class="-mx-4 flex flex-wrap">
     <div class="w-full px-4">
-      <div class="mx-auto mb-[60px] max-w-[510px] text-center lg:mb-20">
+      <div class="mx-auto max-w-[510px] text-center lg:mb-8">
         <h2 class="text-primary mb-2 block text-lg font-semibold">
           Pricing Table
         </h2>
@@ -31,7 +31,7 @@ class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[9
   <div class="-mx-4 flex flex-wrap justify-center">
     <div class="w-full px-4">
       <div
-              class="border-primary shadow-pricing relative z-10 mb-10 overflow-hidden rounded-xl border border-opacity-20 bg-white py-10 px-8 sm:p-12 lg:py-10 lg:px-6 xl:p-12"
+              class="border-primary shadow-pricing mb-10 relative z-10 overflow-hidden rounded-xl border border-opacity-20 bg-white py-10 px-8 sm:p-12 lg:py-10 lg:px-6 xl:p-12"
       >
         <h2 class="text-primary mb-4 block text-lg font-semibold">
           Learning, testing and developing
@@ -204,7 +204,7 @@ class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[9
   <div class="-mx-4 flex flex-wrap justify-center">
     <div class="w-full px-4 md:w-1/2 lg:w-1/2">
       <div
-        class="border-primary shadow-pricing relative z-10 mb-10 overflow-hidden rounded-xl border border-opacity-20 bg-white py-10 px-8 sm:p-12 lg:py-10 lg:px-6 xl:p-12"
+        class="border-primary shadow-pricing relative z-10 overflow-hidden rounded-xl border border-opacity-20 bg-white py-10 px-8 sm:p-12 lg:py-10 lg:px-6 xl:p-12"
       >
         <h2 class="text-primary mb-4 block text-lg font-semibold">
           Personal & small business
@@ -434,7 +434,7 @@ class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[9
     </div>
     <div class="w-full px-4 md:w-1/2 lg:w-1/2">
       <div
-        class="border-primary shadow-pricing relative z-10 mb-10 overflow-hidden rounded-xl border border-opacity-20 bg-white py-10 px-8 sm:p-12 lg:py-10 lg:px-6 xl:p-12"
+        class="border-primary shadow-pricing relative z-10 h-full overflow-hidden rounded-xl border border-opacity-20 bg-white py-10 px-8 sm:p-12 lg:py-10 lg:px-6 xl:p-12"
       >
         <h2 class="text-primary mb-4 block text-lg font-semibold">
           High traffic website
