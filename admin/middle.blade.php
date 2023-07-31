@@ -23,7 +23,7 @@
     @endif
     @foreach($components as $component)
         @php($suffix = str_replace($componentKey, '', $component->key))
-        @include("structure.{$component->type}_component_admin", ['componentStore' => $componentStore, 'component' => $component, 'contentStore' => $contentStore, 'contentId' => $currentContentId . $suffix])
+        @include("structure.{$component->type}.{$component->type}_component_admin", ['componentStore' => $componentStore, 'component' => $component, 'contentStore' => $contentStore, 'contentId' => $currentContentId . $suffix])
     @endforeach
     {{-- Ensure that we have the parent id for every item --}}
     <input type="hidden" name="{{ $currentContentId }}" value="__is_parent" x-bind="field" x-init="$dispatch('saveThisField')">

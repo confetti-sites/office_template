@@ -32,7 +32,7 @@
         @foreach($children as $child)
             @php($suffix = str_replace($component->key, '', $child->key))
             <div x-show="{{ hashId($child->getDecoration('condition')['pointer_key']) }} == '{{ $child->getDecoration('condition')['pointed_key'] }}'">
-                @include("structure.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child, 'contentId' => $contentId . $suffix])
+                @include("structure.{$child->type}.{$child->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $child, 'contentId' => $contentId . $suffix])
             </div>
         @endforeach
     @endif

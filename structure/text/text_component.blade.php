@@ -10,6 +10,6 @@
             Decoration::MAX->comment('Maximum number of characters'),
             Decoration::PLACEHOLDER->comment('The placeholder text for the input field'),
         ],
-        phpClass: file_get_contents(repositoryPath() . '/structure/text_component.class.php'),
+        phpClass: file_get_contents(repositoryPath() . '/structure/text/_component.class.php'),
     ))->toJson();
 @endphp
