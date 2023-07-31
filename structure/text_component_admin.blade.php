@@ -20,15 +20,40 @@
 $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecoration('default')['value'])
 @endphp
 
+{{-- <div x-data="editor2(decodeURIComponent('{!! $content !!}'), '{{ $contentId }}')">
+  <div x-ref="element"></div>
+</div> --}}
+
+{{-- <template x-teleport="head">
+  <template x-if="modalIsOpen">
+    <script type="module">
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('editor2', (content, contentId) => {
+            let editor;
+            let modalIsOpen;
+
+            return {
+              modalIsOpen: false,
+              updatedAt: Date.now(), // force Alpine to rerender on selection change
+              init() {
+                const _this = this;
+                editor = new Editor({
+                  element: this.$refs.element,
+                  extensions: [
+                    StarterKit,
+                  ],
+                })
+              },
+            }
+          })
+    })
+
+    </script>
+    </template>
+</template> --}}
+
 <div x-data="editor(decodeURIComponent('{!! $content !!}'), '{{ $contentId }}')">
-    {{-- <template x-teleport="head">
-      <template x-if="modalIsOpen">
-          <script lang="js">
-            const bla = new Editor({});
-              alert('teleport');
-          </script>
-        </template>
-    </template> --}}
+
 
   <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
     <template x-if="isLoaded()">
@@ -38,10 +63,6 @@ $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecora
                     <button type="button" @click="toggleHeading({ level: 1 })" :class="{ 'bg-slate-500 text-white' : isActive('heading', { level: 1 }, updatedAt) }" class="p-2 text-gray-500 rounded cursor-pointer hover:bg-slate-500 hover:text-white dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                       <svg class="w-4 h-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M0 64C0 46.3 14.3 32 32 32H80h48c17.7 0 32 14.3 32 32s-14.3 32-32 32H112V208H336V96H320c-17.7 0-32-14.3-32-32s14.3-32 32-32h48 48c17.7 0 32 14.3 32 32s-14.3 32-32 32H400V240 416h16c17.7 0 32 14.3 32 32s-14.3 32-32 32H368 320c-17.7 0-32-14.3-32-32s14.3-32 32-32h16V272H112V416h16c17.7 0 32 14.3 32 32s-14.3 32-32 32H80 32c-17.7 0-32-14.3-32-32s14.3-32 32-32H48V240 96H32C14.3 96 0 81.7 0 64z"/></svg>
                         <span class="sr-only">H1</span>
-                    </button>
-                    <button type="button" @click="setParagraph()" :class="{ 'bg-slate-500 text-white' : isActive('paragraph', updatedAt) }" class="p-2 text-gray-500 rounded cursor-pointer hover:bg-slate-500 hover:text-white dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                      <svg class="w-4 h-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M192 32h64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H384l0 352c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-352H288V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H192c-88.4 0-160-71.6-160-160s71.6-160 160-160z"/></svg>
-                        <span class="sr-only">p</span>
                     </button>
                     <button type="button" @click="toggleBold()" :class="{ 'bg-slate-500 text-white' : isActive('bold', updatedAt) }" class="p-2 text-gray-500 rounded cursor-pointer hover:bg-slate-500 hover:text-white dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                       <svg class="w-4 h-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M0 64C0 46.3 14.3 32 32 32H80 96 224c70.7 0 128 57.3 128 128c0 31.3-11.3 60.1-30 82.3c37.1 22.4 62 63.1 62 109.7c0 70.7-57.3 128-128 128H96 80 32c-17.7 0-32-14.3-32-32s14.3-32 32-32H48V256 96H32C14.3 96 0 81.7 0 64zM224 224c35.3 0 64-28.7 64-64s-28.7-64-64-64H112V224H224zM112 288V416H256c35.3 0 64-28.7 64-64s-28.7-64-64-64H224 112z"/></svg>
@@ -66,19 +87,6 @@ $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecora
                     <button type="button" @click="setOrderedList()" :class="{ 'bg-slate-500 text-white' : isActive('orderedList', updatedAt) }" class="p-2 text-gray-500 rounded cursor-pointer hover:bg-slate-500 hover:text-white dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                       <svg class="w-4 h-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M24 56c0-13.3 10.7-24 24-24H80c13.3 0 24 10.7 24 24V176h16c13.3 0 24 10.7 24 24s-10.7 24-24 24H40c-13.3 0-24-10.7-24-24s10.7-24 24-24H56V80H48C34.7 80 24 69.3 24 56zM86.7 341.2c-6.5-7.4-18.3-6.9-24 1.2L51.5 357.9c-7.7 10.8-22.7 13.3-33.5 5.6s-13.3-22.7-5.6-33.5l11.1-15.6c23.7-33.2 72.3-35.6 99.2-4.9c21.3 24.4 20.8 60.9-1.1 84.7L86.8 432H120c13.3 0 24 10.7 24 24s-10.7 24-24 24H32c-9.5 0-18.2-5.6-22-14.4s-2.1-18.9 4.3-25.9l72-78c5.3-5.8 5.4-14.6 .3-20.5zM224 64H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 160H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 160H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
                         <span class="sr-only">list ol</span>
-                    </button>
-                    <button type="button" class="p-2 text-gray-500 rounded cursor-pointer hover:bg-slate-500 hover:text-white dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
-                            <path d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2ZM10.5 6a1.5 1.5 0 1 1 0 2.999A1.5 1.5 0 0 1 10.5 6Zm2.221 10.515a1 1 0 0 1-.858.485h-8a1 1 0 0 1-.9-1.43L5.6 10.039a.978.978 0 0 1 .936-.57 1 1 0 0 1 .9.632l1.181 2.981.541-1a.945.945 0 0 1 .883-.522 1 1 0 0 1 .879.529l1.832 3.438a1 1 0 0 1-.031.988Z"></path>
-                            <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z"></path>
-                        </svg>
-                        <span class="sr-only">Upload image</span>
-                    </button>
-                    <button type="button" class="p-2 text-gray-500 rounded cursor-pointer hover:bg-slate-500 hover:text-white dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM13.5 6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm-7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm3.5 9.5A5.5 5.5 0 0 1 4.6 11h10.81A5.5 5.5 0 0 1 10 15.5Z"></path>
-                        </svg>
-                        <span class="sr-only">Add emoji</span>
                     </button>
                 </div>
             </div>
@@ -111,7 +119,7 @@ $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecora
                 </div>
 
                 <div class="py-6">
-                  <input type="search" x-ref="urlInput" id="default-search" class="block w-full p-2 pl-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Plaats een url." required>
+                  @include('structure.input.text', ['ref' => 'urlInput'])
                   <div class="flex items-center mb-4 mt-4">
                     <input id="default-checkbox" x-ref="newTabCheckbox" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Open link in nieuw tab</label>
@@ -137,93 +145,31 @@ $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecora
   </div>
 </div>
 
-{{-- <div x-data="editor('<p>Hello world! :-)</p>')">
-    <template x-if="isLoaded()">
-      <div class="menu">
-        <button
-          @click="toggleHeading({ level: 1 })"
-          :class="{ 'is-active': isActive('heading', { level: 1 }, updatedAt) }"
-        >
-          H1
-        </button>
-        <button
-          @click="toggleBold()"
-          :class="{ 'is-active' : isActive('bold', updatedAt) }"
-        >
-          Bold
-        </button>
-        <button
-          @click="toggleItalic()"
-          :class="{ 'is-active' : isActive('italic', updatedAt) }"
-        >
-          Italic
-        </button>
-      </div>
-    </template>
-</div> --}}
-
-{{-- <div id="wysywigg" x-bind="field" class="block w-full mt-1 placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:ring-gray focus-within:text-primary-600 dark:focus-within:text-primary-400 dark:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:placeholder-gray-300" ></div> --}}
-
 @pushonce('script_list')
-<script type="module">
-  // import { Editor } from 'https://esm.sh/@tiptap/core'
+{{-- <script>
+  alert('sdds')
+</script> --}}
+{{-- <script type="module">
   document.addEventListener('alpine:init', () => {
+    Alpine.data('editor2', (content, contentId) => {
+        let editor;
+        let modalIsOpen;
 
-    // Alpine.data('editor', (content) => {
-    //     let editor
+        return {
+          modalIsOpen: false,
+          updatedAt: Date.now(), // force Alpine to rerender on selection change
+          init() {
+            const _this = this;
+            editor = new Editor({
+              element: this.$refs.element,
+              extensions: [
+                StarterKit,
+              ],
+            })
+          },
+        }
+      })
+})
 
-    //     return {
-    //       updatedAt: Date.now(), // force Alpine to rerender on selection change
-    //       init() {
-    //         const _this = this
-
-    //         editor = new Editor({
-    //           element: this.$refs.element,
-    //           extensions: [
-    //             StarterKit
-    //           ],
-    //           content: content,
-    //           onCreate({ editor }) {
-    //             _this.updatedAt = Date.now()
-    //           },
-    //           onUpdate({ editor }) {
-    //             _this.updatedAt = Date.now()
-    //           },
-    //           onSelectionUpdate({ editor }) {
-    //             _this.updatedAt = Date.now()
-    //           }
-    //         })
-    //       },
-    //       isLoaded() {
-    //         return editor
-    //       },
-    //       isActive(type, opts = {}) {
-    //         return editor.isActive(type, opts)
-    //       },
-    //       toggleHeading(opts) {
-    //         editor.chain().toggleHeading(opts).focus().run()
-    //       },
-    //       toggleBold() {
-    //         editor.chain().toggleBold().focus().run()
-    //       },
-    //       toggleItalic() {
-    //         editor.chain().toggleItalic().focus().run()
-    //       },
-    //     }
-    //   });
-
-
-    // const editor = new Editor({
-    //   element: document.querySelector('#wysywigg'),
-    //   extensions: [
-    //     StarterKit,
-    //   ],
-    //   content: '{!! $contentStore->find($contentId) ?? $component->getDecoration('default')['value'] !!}',
-    //   onUpdate({ editor }) {
-    //     const html = editor.getHTML();
-    //     Alpine.store('form').upsert('{{ $contentId }}', html)
-    // },
-    // })
-  });
-</script>
+</script> --}}
 @endpushonce

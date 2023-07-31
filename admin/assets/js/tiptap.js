@@ -22,7 +22,7 @@ document.addEventListener('alpine:init', () => {
         let modalIsOpen;
 
         return {
-        modalIsOpen: false,
+          modalIsOpen: false,
           updatedAt: Date.now(), // force Alpine to rerender on selection change
           init() {
             const _this = this;
