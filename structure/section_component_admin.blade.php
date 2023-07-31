@@ -10,6 +10,6 @@
 
 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
     @foreach($componentStore->whereParentKey($component->key) as $componentChild)
-        @include("structure.{$componentChild->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $componentChild])
+        @include("structure.{$componentChild->type}.{$componentChild->type}_component_admin", ['componentRepository' => $componentStore, 'component' => $componentChild])
     @endforeach
 </div>
