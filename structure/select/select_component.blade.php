@@ -22,6 +22,6 @@
             Decoration::LABEL->comment('Label is used as a field title in the admin panel'),
             Decoration::OPTIONS->comment('List of options. For now, only values are supported.'),
         ],
-        phpClass: file_get_contents(repositoryPath() . '/structure/select/select_component.class.php'),
+        phpClass: file_get_contents(repositoryPath() . '/structure/select_component.class.php'),
     ))->toJson();
 @endphp

@@ -7,6 +7,6 @@
             Decoration::DEFAULT->comment('If no value is given, this will be used'),
             Decoration::LABEL->comment('Label is used as a field title in the admin panel'),
         ],
-        phpClass: file_get_contents(repositoryPath() . '/structure/color/color_component.class.php'),
+        phpClass: file_get_contents(repositoryPath() . '/structure/color_component.class.php'),
     ))->toJson();
 @endphp
