@@ -19,14 +19,11 @@ const setEditor = (options) => {
 document.addEventListener('alpine:init', () => {
     Alpine.data('editor', (content, contentId) => {
         let editor;
-        let modalIsOpen;
 
         return {
-          modalIsOpen: false,
           updatedAt: Date.now(), // force Alpine to rerender on selection change
           init() {
             const _this = this;
-            modalIsOpen = false;
             editor = new Editor({
               element: this.$refs.element,
               editorProps: {
@@ -94,7 +91,7 @@ document.addEventListener('alpine:init', () => {
             editor.chain().setParagraph().run()
           },
           openLinkModal() {
-            this.modalIsOpen = true;
+            this.openModal2();
             this.$nextTick(() => {
                 if (this.$refs.urlInput) {
                     this.$refs.urlInput.focus();

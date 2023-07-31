@@ -29,7 +29,14 @@ function data() {
     setTheme(getThemeFromLocalStorage());
 
     return {
+        modalIsOpen2: false,
         dark: getThemeFromLocalStorage(),
+        openModal2() {
+            this.modalIsOpen2 = true
+        },
+        closeModal2() {
+            this.modalIsOpen2 = false
+        },
         toggleTheme() {
             this.dark = !this.dark
             setTheme(this.dark);

@@ -103,42 +103,38 @@ $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecora
         </div>
     </template>
 
-<template x-if="modalIsOpen">
-    <div id="popup-modal" tabindex="-1" class="flex items-center justify-center bg-black bg-opacity-70 fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen max-h-full">
-      <div class="relative w-full max-w-md max-h-full">
-          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-              <button @click="modalIsOpen = false" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
-                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                  </svg>
-                  <span class="sr-only">Close modal</span>
-              </button>
-              <div class="p-6 text-center">
-                <div class="flex justify-center text-gray-400">
-                  <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>
-                </div>
-
-                <div class="py-6">
-                  @include('structure.input.text', ['ref' => 'urlInput'])
-                  <div class="flex items-center mb-4 mt-4">
-                    <input id="default-checkbox" x-ref="newTabCheckbox" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Open link in nieuw tab</label>
-                </div>
-                </div>
-
-                  <button
-                    @click="setLink({url: $refs.urlInput.value, newTab: $refs.newTabCheckbox.checked}); modalIsOpen = false"
-                    type="button"
-                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
-                    x-text="$refs.urlInput.value ? 'Update link' : 'Voeg link toe'"
-                    ></button>
-                  <button @click="modalIsOpen = false" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
-              </div>
-          </div>
+    @component('structure.components.modal')
+      <div>
+        @php($textPars =[
+          'ref' => 'urlInput',
+          'type' => 'search',
+          'label' => 'Link',
+          'placeholder' => 'https://www.example.com',
+          'value' => '',
+        ])`
+        @component('structure.input.text',$textPars)
+        @endcomponent
+        <div class="mb-4 mt-4">
+          @php($checkboxPars =[
+            'ref' => 'newTabCheckbox',
+            'type' => 'checkbox',
+            'label' => 'Open link in nieuw tab',
+            'id' => "checkbox-1",
+          ])
+          @include('structure.input.checkbox', $checkboxPars)
+        </div>
       </div>
-  </div>
-</template>
 
+      <button
+        @click="setLink({url: $refs.urlInput.value, newTab: $refs.newTabCheckbox.checked}); closeModal2()"
+        type="button"
+        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+        x-text="$refs.urlInput.value ? 'Update link' : 'Voeg link toe'"
+        ></button>
+        <button @click="closeModal2()" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+          Cancel
+        </button>
+    @endcomponent
     <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
         <div x-ref="element" class="prose min-h-[200px] block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"></div>
     </div>
