@@ -5,7 +5,7 @@
       containers: [
         // Main view container
         {
-          name: 'view-php',
+          name: 'confetti-cms/view-php',
           hosts: [
             'confetti-cms.localhost',
           ],
