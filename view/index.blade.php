@@ -2,7 +2,7 @@
 <head>
     <title>Confetti CMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/generated/view/tailwind.output.css"/>
+    <link rel="stylesheet" href="/shared_resources/tailwind/tailwind.output.css"/>
     <link rel="stylesheet" href="/view/assets/css/fonts.css"/>
     <script defer>
         @stack('scripts_*')
