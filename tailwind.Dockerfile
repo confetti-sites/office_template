@@ -13,5 +13,5 @@ RUN mv tailwindcss-linux-x64 /bin/tailwindcss
 CMD /bin/tailwindcss \
 -i /src/view/assets/css/tailwind.css \
 -c /src/view/tailwind.config.js \
--o /src/view/tailwind.output.css \
+-o /var/shared_resources/tailwind/tailwind.output.css \
 --watch
