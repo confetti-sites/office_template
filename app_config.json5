@@ -1,0 +1,25 @@
+{
+  environments: [
+    {
+      key: 'dev',
+      containers: [
+        // Main view container
+        {
+          name: 'confetti-cms/view-php',
+          hosts: [
+            'office_dev.confetti-cms.localhost',
+          ],
+          paths: [
+            '/',
+          ],
+        },
+        // For all other containers
+        {
+          hosts: [
+            'api.office_dev.confetti-cms.localhost',
+          ],
+        },
+      ],
+    },
+  ],
+}
