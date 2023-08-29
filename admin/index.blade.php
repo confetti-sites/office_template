@@ -22,7 +22,7 @@
     <script src="/admin/assets/js/alpine.min.js" defer></script>
 </head>
 
-<body class="text-gray-700 dark:text-gray-400">
+<body class="text-gray-700 dark:text-gray-400 overflow-hidden">
     @guest()
         @include('auth.redirect_to_login')
     @else

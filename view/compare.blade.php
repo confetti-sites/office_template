@@ -1,6 +1,6 @@
 @php($compare = section('compare'))
 <div class="bg-gray-50 flex items-center justify-center">
-    @php($cases = $compare->list('cases')->columns(['title'])->min(1)->max(4))
+    @php($cases = $compare->list('cases')->columns(['title', 'description'])->min(1)->max(4))
     <div class="relative w-full max-w-5xl" x-data="{ tab: '0'}">
         <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         <div class="absolute top-20 -left-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob "></div>
@@ -12,6 +12,7 @@
                          :class="{'text-indigo-600 border-b border-indigo-600': tab == '{{ $tapNr }}'}"
                          @click="tab = '{{ $tapNr }}'">
                         <span>{{ $case->text('title')->min(1)->max(20) }}</span>
+                        <span>{{ $case->text('description')->min(1)->max(20) }}</span>
                     </div>
                 @endforeach
             </div>
