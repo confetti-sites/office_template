@@ -1,10 +1,11 @@
+@php($hero = section('hero'))
 <div class="flex items-center justify-center bg-white dark:bg-gray-900 pt-[70px]">
     <div
       class="container py-28 md:flex md:items-center"
     >
       <div class="md:w-1/2" x-intersect="$el.classList.add('slide-in-top')">
         <h1 class="text-6xl font-bold leading-tight dark:text-white text-gray-900">
-          Confetti CMS
+          <span>{!! $hero->text('title')->min(1)->max(20)->default('Confetti CMS') !!}</span>
         </h1>
         <p class="mt-4 text-xl dark:text-white text-gray-900">
           A developer first framework to build your websites blazing fast
