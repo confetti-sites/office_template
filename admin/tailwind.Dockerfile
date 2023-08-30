@@ -11,7 +11,7 @@ RUN chmod +x tailwindcss-linux-x64
 RUN mv tailwindcss-linux-x64 /bin/tailwindcss
 
 CMD /bin/tailwindcss \
--i /src/view/assets/css/tailwind.css \
--c /src/view/tailwind.config.js \
--o /var/resources/tailwind/tailwind.output.css \
+-i /src/assets/css/tailwind.css \
+-c /src/tailwind.config.js \
+-o /var/resources/admin-tailwind/tailwind.output.css \
 --watch
