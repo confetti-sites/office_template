@@ -7,7 +7,7 @@
         {
           name: 'confetti-cms/view-php',
           hosts: [
-            '__HOST__',
+            'confetti-cms.localhost',
           ],
           paths: [
             '/',
@@ -16,7 +16,7 @@
         // For all other containers
         {
           hosts: [
-            'api.__HOST__',
+            'api.confetti-cms.localhost',
           ],
         },
       ],
