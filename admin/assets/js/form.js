@@ -104,7 +104,7 @@ document.addEventListener('alpine:init', () => {
                 }
                 ready()
             });
-            xhr.open("PATCH", apiUrl + "/content/contents");
+            xhr.open("PATCH", apiUrl + "/confetti-cms/content/contents");
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.setRequestHeader("Accept", "application/json");
             xhr.setRequestHeader("Authorization", "Bearer " + document.cookie.split('access_token=')[1].split(';')[0]);
