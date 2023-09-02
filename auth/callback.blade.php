@@ -4,7 +4,7 @@
     </div>
 @else
     @php
-        $response = (new \Confetti\Helpers\Client())->get('auth:8080/auth/callback?code=' . request()->parameter('code'));
+        $response = (new \Confetti\Helpers\Client())->get('confetti-cms-auth/confetti-cms/auth/callback?code=' . request()->parameter('code'));
         try {
             $contents = json_decode($response, true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
