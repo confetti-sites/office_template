@@ -6,18 +6,11 @@
      * @var string $contentId
      */
 @endphp
-<label class="block mt-4 text-sm">
-    <span class="">
-        {{ $component->getDecoration('label')['value'] }}
-    </span>
-    <textarea
-            x-bind="field"
-            class="block w-full mt-1 placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:ring-gray focus-within:text-primary-600 dark:focus-within:text-primary-400 dark:placeholder-gray-500 dark:focus:placeholder-gray-600 focus:placeholder-gray-300"
-            placeholder="{{ $component->getDecoration('placeholder')['value'] }}"
-            name="{{ $contentId }}">{{ $contentStore->find($contentId) ?? $component->getDecoration('default')['value'] }}</textarea>
-</label>
+<div class="block text-bold text-xl mt-8 mb-4">
+  {{ $component->getDecoration('label')['value'] }}
+</div>
 @php
-$content = rawurlencode($contentStore->find($contentId) ?? $component->getDecoration('default')['value'])
+  $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecoration('default')['value'] ?? '')
 @endphp
 
 {{-- <div x-data="editor2(decodeURIComponent('{!! $content !!}'), '{{ $contentId }}')">
@@ -53,8 +46,6 @@ $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecora
 </template> --}}
 
 <div x-data="editor(decodeURIComponent('{!! $content !!}'), '{{ $contentId }}')">
-
-
   <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
     <template x-if="isLoaded()">
         <div id="menu" class="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
@@ -111,9 +102,9 @@ $content = rawurlencode($contentStore->find($contentId) ?? $component->getDecora
           'label' => 'Link',
           'placeholder' => 'https://www.example.com',
           'value' => '',
-        ])`
-        @component('structure.input.text',$textPars)
-        @endcomponent
+          'classes' => 'pl-0'
+        ])
+        @include('structure.input.text',$textPars)
         <div class="mb-4 mt-4">
           @php($checkboxPars =[
             'ref' => 'newTabCheckbox',

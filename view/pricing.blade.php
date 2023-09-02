@@ -15,7 +15,7 @@ class="relative z-20 overflow-hidden bg-white pt-20 lg:pt-[120px]"
         >
           Only pay for hosting
         </div>
-        <p class="text-body-color text-base">
+        <p class="text-body-color text-base font-body font-bold">
           Confetti offers various solutions to help you build websites faster. Trying it out is free. When you are ready to publish your website, you only pay for hosting.
         </p>
       </div>
@@ -40,7 +40,7 @@ class="relative z-20 overflow-hidden bg-white pt-20 lg:pt-[120px]"
           Free
         </span>
         <p
-                class="text-body-color mb-8 text-base"
+                class="text-body-color mb-8 text-base font-body font-bold"
         >
           Confetti-CMS is free to use for tinkering your next idea.
         </p>
@@ -214,9 +214,9 @@ class="relative z-20 overflow-hidden bg-white pt-20 lg:pt-[120px]"
           <span class="text-body-color text-base font-medium"> / month</span>
         </div>
         <p
-          class="text-body-color mb-8 border-b border-[#F2F2F2] pb-8 text-base"
+          class="text-body-color mb-8 border-b border-[#F2F2F2] pb-8 text-base font-body font-bold"
         >
-          A website for a local club, small business or a busy blog.
+        Perfect for a personal website, local club or a small business.
         </p>
         <div>
           <p class="text-body-color mb-1 text-base leading-loose">Backups</p>
@@ -443,7 +443,7 @@ class="relative z-20 overflow-hidden bg-white pt-20 lg:pt-[120px]"
           + €24
           <span class="text-body-color text-base font-medium"> / month<br>for every additional resource</span>
         </div>
-        <p class="text-body-color mb-8 pb-8 text-base">
+        <p class="text-body-color mb-8 pb-8 text-base font-body font-bold">
             Do you have a high traffic website? Let us handle the stress for you. So you can scale your business.
         </p>
         <div>
