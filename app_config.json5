@@ -21,26 +21,5 @@
         },
       ],
     },
-    {
-      key: 'prod',
-      containers: [
-        // Main view container
-        {
-          name: 'confetti-cms/view-php',
-          hosts: [
-            'office_dev.confetti-cms.com',
-          ],
-          paths: [
-            '/',
-          ],
-        },
-        // For all other containers
-        {
-          hosts: [
-            'api.office_dev.confetti-cms.com',
-          ],
-        },
-      ],
-    },
   ],
 }
