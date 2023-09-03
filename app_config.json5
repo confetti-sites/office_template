@@ -16,7 +16,10 @@
         // For all other containers
         {
           hosts: [
-            'api.office_dev.confetti-cms.localhost',
+            'office_dev.confetti-cms.localhost',
+          ],
+          suffix_paths: [
+            '/conf_api',
           ],
         },
       ],
