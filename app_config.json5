@@ -18,7 +18,7 @@
           hosts: [
             'office_dev.confetti-cms.localhost',
           ],
-          suffix_paths: [
+          paths_with_service: [
             '/conf_api',
           ],
         },
