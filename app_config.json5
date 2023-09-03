@@ -18,9 +18,10 @@
           hosts: [
             'office_dev.confetti-cms.localhost',
           ],
-          paths_with_service: [
+          paths: [
             '/conf_api',
           ],
+          user_service_in_uri: true,
         },
       ],
     },
