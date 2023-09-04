@@ -10,6 +10,6 @@
             Decoration::MAX->comment('Maximum number'),
             Decoration::PLACEHOLDER->comment('The placeholder text for the input field'),
         ],
-        phpClass: file_get_contents(repositoryPath() . '/structure/number_component.class.php'),
+        phpClass: file_get_contents(repositoryPath() . '/admin/structure/number_component.class.php'),
     ))->toJson();
 @endphp
