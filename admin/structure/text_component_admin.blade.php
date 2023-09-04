@@ -94,7 +94,7 @@
         </div>
     </template>
 
-    @component('structure.components.modal')
+    @component('admin.structure.components.modal')
       <div>
         @php($textPars =[
           'ref' => 'urlInput',
@@ -104,7 +104,7 @@
           'value' => '',
           'classes' => 'pl-0'
         ])
-        @include('structure.input.text',$textPars)
+        @include('admin.structure.input.text',$textPars)
         <div class="mb-4 mt-4">
           @php($checkboxPars =[
             'ref' => 'newTabCheckbox',
@@ -112,7 +112,7 @@
             'label' => 'Open link in nieuw tab',
             'id' => "checkbox-1",
           ])
-          @include('structure.input.checkbox', $checkboxPars)
+          @include('admin.structure.input.checkbox', $checkboxPars)
         </div>
       </div>
 
