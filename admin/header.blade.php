@@ -28,7 +28,7 @@
                     'required' => true,
                     'classes' => 'pl-8',
                 ])
-                @component('structure.input.text',$textPars1) @endcomponent
+                @component('admin.structure.input.text',$textPars1) @endcomponent
             </div>
         </div>
         <ul class="flex items-center flex-shrink-0 space-x-6">

@@ -3,7 +3,7 @@
     {
       key: 'localhost',
       containers: [
-        // Main view container
+        // Main view service
         {
           name: 'confetti-cms/view-php',
           hosts: [
@@ -13,32 +13,15 @@
             '/',
           ],
         },
-        // For all other containers
+        // For all other services
         {
           hosts: [
-            'api.office_dev.confetti-cms.localhost',
-          ],
-        },
-      ],
-    },
-    {
-      key: 'prod',
-      containers: [
-        // Main view container
-        {
-          name: 'confetti-cms/view-php',
-          hosts: [
-            'office_dev.confetti-cms.com',
+            'office_dev.confetti-cms.localhost',
           ],
           paths: [
-            '/',
+            '/conf_api',
           ],
-        },
-        // For all other containers
-        {
-          hosts: [
-            'api.office_dev.confetti-cms.com',
-          ],
+          user_service_in_uri: true,
         },
       ],
     },
