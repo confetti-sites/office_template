@@ -5,9 +5,10 @@
         name: 'upload',
         decorations: [
             Decoration::LABEL->comment('Label is used as a field title in the admin panel'),
-            Decoration::MIN->comment('Minimum number of characters'),
-            Decoration::MAX->comment('Maximum number of characters'),
+            Decoration::HEIGHT->comment('Height of the image'),
+            Decoration::WIDTH->comment('Width of the image'),
         ],
         phpClass: file_get_contents(repositoryPath() . '/admin/structure/upload_component.class.php'),
     ))->toJson();
 @endphp
+

@@ -1,3 +1,4 @@
+@php($header = section('header'))
 <header class="fixed z-50 bg-white/80 backdrop-blur border-b border-gray-100 dark:border-gray-700/30 dark:bg-gray-900/80 w-full">
             <nav
               id="navbar"
@@ -11,7 +12,7 @@
                     class="relative z-20 flex w-full justify-between md:px-0 lg:w-max"
                   >
                     <a href="/" aria-label="logo" class="flex items-center space-x-2">
-                      <img src="/view/assets/confetti_cms_logo.png" class="h-20">
+                      <img src="{{ $header->upload('image4')->width(40)->height(30) }}" class="h-20">
                     </a>
 
                     <button

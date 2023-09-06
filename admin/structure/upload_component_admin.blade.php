@@ -11,9 +11,9 @@
         {{ $component->getDecoration('label')['value'] }}
     </span>
     <input
-            type="text"
+            type="file"
             x-bind="field"
             name="{{ $contentId }}"
-            value="{{ $contentStore->find($component->key) ?? $component->getDecoration('default')['value'] }}"
+            value="{{ $contentStore->find($component->key) }}"
     >
 </label>

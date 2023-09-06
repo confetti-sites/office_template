@@ -15,6 +15,11 @@ return new class extends ComponentStandard {
             return $content->value;
         }
 
-        return 'https://picsum.photos/200/300';
+        // Get default value
+        $component = $this->componentStore->findOrNull($this->key);
+        $width = $component?->getDecoration('width')['value'] ?? 300;
+        $height = $component?->getDecoration('height')['value'] ?? 200;
+
+        return "https://picsum.photos/$width/$height";
     }
 };
