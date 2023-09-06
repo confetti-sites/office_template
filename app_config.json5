@@ -18,6 +18,7 @@
           hosts: [
             'api.confetti-cms.com',
           ],
+          user_service_in_uri: true,
         },
       ],
     },
