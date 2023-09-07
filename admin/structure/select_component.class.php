@@ -38,12 +38,14 @@ return new class extends ComponentStandard implements HasMapInterface {
             return $component->getDecoration('default')['value'];
         }
 
-        // Get first option
+        // Get random value from all options
         $options = $component->getDecoration('options')['options'];
         if (count($options) === 0) {
             return '';
         }
-        return $component->getDecoration('options')['options'][0]['id'];
+        // random index from 0 to count($options) - 1
+        $index = rand(0, count($options) - 1);
+        return $options[$index]['id'];
     }
 
     public function getValueFromFileInDirectories(ComponentEntity $component): string
