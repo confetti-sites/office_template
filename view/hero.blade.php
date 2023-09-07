@@ -37,7 +37,7 @@
               </svg>
             </div>
             <img
-              src="https://cdn.tuk.dev/previews/desktop-2x/hero_7.jpg"
+              src="{{ $hero->upload('image')->height(300)->width(400) }}"
               alt=""
               class="w-full h-full object-cover rounded-lg shadow-md"
             />
