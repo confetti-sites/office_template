@@ -1,22 +1,25 @@
 {
   environments: [
     {
-      key: 'dev',
+      key: 'localhost',
       containers: [
-        // Main view container
+        // Main view service
         {
           name: 'confetti-cms/view-php',
           hosts: [
-            'confetti-cms.com',
+            'office_dev.confetti-cms.localhost',
           ],
           paths: [
             '/',
           ],
         },
-        // For all other containers
+        // For all other services
         {
           hosts: [
-            'api.confetti-cms.com',
+            'office_dev.confetti-cms.localhost',
+          ],
+          paths: [
+            '/conf_api',
           ],
           user_service_in_uri: true,
         },
