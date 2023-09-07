@@ -21,6 +21,9 @@
           paths: [
             '/conf_api',
           ],
+          paths: [
+            '/conf_api',
+          ],
           user_service_in_uri: true,
         },
       ],
