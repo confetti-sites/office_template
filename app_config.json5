@@ -7,7 +7,7 @@
         {
           name: 'confetti-cms/view-php',
           hosts: [
-            'office_dev.confetti-cms.localhost',
+            'confetti-cms.com',
           ],
           paths: [
             '/',
@@ -16,10 +16,7 @@
         // For all other services
         {
           hosts: [
-            'office_dev.confetti-cms.localhost',
-          ],
-          paths: [
-            '/conf_api',
+            'confetti-cms.com',
           ],
           paths: [
             '/conf_api',
