@@ -1,3 +1,4 @@
+@php($homepage = section('homepage'))
 @include('view.hero')
 @include('view.usps')
 @include('view.demo')

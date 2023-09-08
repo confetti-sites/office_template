@@ -1,9 +1,11 @@
 @php
     /**
      * @var \Confetti\Helpers\ContentStore $contentStore
+     * @var \Confetti\Helpers\ComponentStore $componentStore
      * @var \Confetti\Helpers\ComponentEntity[] $menuComponents
      * @var string $currentContentId
      */
+    $menuComponents = $componentStore->whereType('section')
 @endphp
 <div class="py-4 text-gray-500 dark:text-gray-400">
     <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">

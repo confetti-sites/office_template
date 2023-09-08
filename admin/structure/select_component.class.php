@@ -93,7 +93,7 @@ return new class extends ComponentStandard implements HasMapInterface {
     {
         return new Map(
             $this->id . '/-',
-            new ComponentStore($this->id . '/-'),
+            ComponentStore::newWherePrefix($this->id . '/-'),
             new ContentStore(),
         );
     }
