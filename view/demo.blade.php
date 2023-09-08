@@ -1,4 +1,4 @@
-@php($demo = section('homepage/demo'))
+@php($demo = section('demo'))
 
 <div class="dark:bg-gray-900 pt-8">
     @php($blocks = $demo->list('blocks')->columns(['title'])->min(1)->max(6))
