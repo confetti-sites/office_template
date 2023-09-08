@@ -20,6 +20,6 @@ return new class extends ComponentStandard {
         $width = $component?->getDecoration('width')['value'] ?? 300;
         $height = $component?->getDecoration('height')['value'] ?? 200;
 
-        return "https://picsum.photos/$width/$height";
+        return "https://picsum.photos/$width/$height?random=" . rand(0, 10000);
     }
 };
