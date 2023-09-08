@@ -1,4 +1,4 @@
-@php($setup = section('setup'))
+@php($steps = section('steps'))
 <section class="text-gray-600 body-font">
     <div class="container py-24 mx-auto flex flex-wrap">
         <div class="flex relative py-10 sm:items-center md:w-2/3">
@@ -6,10 +6,10 @@
                 <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
             </div>
             <div class="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
-                <h2 class="text-3xl title-font text-gray-900">{{ $setup->text('setup_title')->max(50) }}</h2>
+                <h2 class="text-3xl title-font text-gray-900">{{ $steps->text('setup_title')->max(50) }}</h2>
             </div>
         </div>
-        @foreach($setup->list('step')->columns(['title'])->max(10) as $i => $step)
+        @foreach($steps->list('step')->columns(['title'])->max(10) as $i => $step)
             <div class="flex relative py-10 sm:items-center md:w-2/3">
                 <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
                     <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
