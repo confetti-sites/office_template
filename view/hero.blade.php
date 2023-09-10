@@ -37,7 +37,7 @@
               </svg>
             </div>
             <img
-              src="{{ $hero->upload('image')->height(300)->width(400) }}"
+              src="{{ $hero->image('image')->height(300)->width(400) }}"
               alt=""
               class="w-full h-full object-cover rounded-lg shadow-md"
             />

@@ -19,7 +19,7 @@
 {{--                    class="md:w-1/2 mt-8 md:mt-0 opacity-0 py-2 @if($position == 'left') -order-1 @endif"--}}
 {{--                    x-intersect="$el.classList.add('slide-in-{{ $position }}')"--}}
             >
-                <img src="{{ $block->upload('image')->width(800)->height(500) }}" alt="">
+                <img src="{{ $block->image('image')->width(800)->height(500) }}" alt="">
             </div>
         </div>
     @endforeach
