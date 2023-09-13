@@ -26,7 +26,9 @@ document.addEventListener('alpine:init', () => {
         }
     })
 
+
     Alpine.store('form', {
+        previewImage: null,
         changes: [],
         allChanges() {
             return this.changes
@@ -52,7 +54,11 @@ document.addEventListener('alpine:init', () => {
                     value: value
                 });
             }
-        }
+        },
+        uploadImage(event) {
+            this.previewImage = URL.createObjectURL(event.target.files[0]);
+            console.log('event', event.target.files);
+        },
     })
     Alpine.bind('field', () => ({
         '@change'(event) {
