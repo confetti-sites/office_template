@@ -10,7 +10,7 @@ RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/downlo
 RUN chmod +x tailwindcss-linux-x64
 RUN mv tailwindcss-linux-x64 /bin/tailwindcss
 
-CMD /bin/tailwindcss \
+CMD watch -n 60 /bin/tailwindcss \
 -i /src/view/assets/css/tailwind.css \
 -c /src/view/tailwind.config.js \
 -o /var/resources/tailwind/tailwind.output.css \
