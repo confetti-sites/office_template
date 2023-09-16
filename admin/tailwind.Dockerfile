@@ -10,6 +10,9 @@ RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/downlo
 RUN chmod +x tailwindcss-linux-x64
 RUN mv tailwindcss-linux-x64 /bin/tailwindcss
 
+LABEL trigger_restart_1h="true"
+LABEL for_development_only="true"
+
 CMD /bin/tailwindcss \
 -i /src/assets/css/tailwind.css \
 -c /src/tailwind.config.js \
