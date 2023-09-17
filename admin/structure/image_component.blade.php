@@ -11,4 +11,3 @@
         phpClass: file_get_contents(repositoryPath() . '/admin/structure/image_component.class.php'),
     ))->toJson();
 @endphp
-
