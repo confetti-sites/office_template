@@ -7,9 +7,9 @@
      */
 @endphp
 
-{{-- <span class="">
+<div class="block text-bold text-xl mt-8 mb-4">
     {{ $component->getDecoration('label')['value'] }}
-</span> --}}
+</div>
 
 {{-- <img x-show="!!$store.form.previewImage" :src="$store.form.previewImage">
 
@@ -34,13 +34,15 @@
     </label>
 </div> --}}
 
-@php($textPars1 =[
-    'ref' => 'search',
-    "id" => "dropzone-file",
-    'value' => 'jeej',
-    'placeholder' => 'SVG, PNG, JPG or GIF (MAX. 800x400px)',
-])
-@component('admin.structure.input.upload',$textPars1) @endcomponent
+@php
+    $value = $contentStore->find($component->key) ?? $component->getDecoration('default')['value'] ?? '';
+    $textPars1 = [
+        'id' => $contentId,
+        'value' => $value,
+        'placeholder' => 'SVG, PNG, JPG or GIF (MAX. 800x400px)',
+    ];
+@endphp
+@component('admin.structure.input.upload', $textPars1) @endcomponent
 
 
 

@@ -1,5 +1,4 @@
 @php
-    $ref = isset($ref) ? 'x-ref="'.$ref.'"' : null;
     $id = isset($id) ? $id : rand(1, 999);
     $placeholder = isset($placeholder) ? $placeholder : null;
 @endphp
@@ -28,7 +27,7 @@
             type="file"
             x-bind="field"
             name="{{ $contentId }}"
-            value="{{ $contentStore->find($component->key) }}"
+            value="{{ $value }}"
             class="hidden"
         />
     </label>
