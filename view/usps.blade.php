@@ -55,7 +55,7 @@
               </h3>
             </div>
             <p class="mt-2 text-base text-gray-500 dark:text-white font-body">
-              Wheater you want yo deploy your website or in develpoment, it is a manner of seconds before it is online.
+              Whatever you want to do, it is a manner of seconds before it is online.
             </p>
           </div>
         </div>

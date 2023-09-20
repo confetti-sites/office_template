@@ -1,4 +1,4 @@
-@php($compare = section('compare'))
+@php($compare = section('homepage/compare')->label('Compare'))
 <div class="bg-gray-50 flex items-center justify-center">
     @php($cases = $compare->list('cases')->columns(['title', 'description'])->min(1)->max(4))
     <div class="relative w-full max-w-5xl" x-data="{ tab: '0'}">

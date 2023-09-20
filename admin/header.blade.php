@@ -1,5 +1,5 @@
 <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
-    <div class="container flex items-center justify-between h-full px-3 mx-auto text-primary-600 dark:text-primary-300">
+    <div class="container flex items-center justify-between h-full px-3 mx-auto">
         <!-- Mobile hamburger -->
         <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:ring"
                 @click="toggleSideMenu" aria-label="Menu">
@@ -9,29 +9,10 @@
                       clip-rule="evenodd"></path>
             </svg>
         </button>
-        <!-- Search input -->
-        <div class="flex justify-center flex-1 lg:mr-32">
-            <div class="relative w-full max-w-xl mr-6 focus-within:text-primary-500">
-                <div class="absolute inset-y-0 flex items-center pl-2">
-                    <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                @php($textPars1 =[
-                    'ref' => 'search',
-                    'type' => 'search',
-                    'label' => 'Link',
-                    'placeholder' => 'Search for projects',
-                    'value' => '',
-                    'required' => true,
-                    'classes' => 'pl-8',
-                ])
-                @component('admin.structure.input.text',$textPars1) @endcomponent
-            </div>
+        <div class="flex justify-center lg:mr-32 text-gray-500">
+            Website: {{ $_SERVER['HTTP_HOST'] }}
         </div>
-        <ul class="flex items-center flex-shrink-0 space-x-6">
+        <ul class="flex items-center flex-shrink-0 space-x-6 text-primary-600 dark:text-primary-300">
             <li class="flex">
                 <button class="rounded-md focus:outline-none focus:ring">
                     <a href="/">Website</a>
