@@ -10,12 +10,12 @@
             </svg>
         </button>
         <div class="flex justify-center lg:mr-32 text-gray-500">
-            Website: {{ $_SERVER['HTTP_HOST'] }}
+            {{-- placeholder for items in the middle --}}
         </div>
         <ul class="flex items-center flex-shrink-0 space-x-6 text-primary-600 dark:text-primary-300">
             <li class="flex">
                 <button class="rounded-md focus:outline-none focus:ring">
-                    <a href="/">Website</a>
+                    <a href="/">{{ $_SERVER['HTTP_HOST'] }}</a>
                 </button>
             </li>
             <!-- Theme toggler -->
