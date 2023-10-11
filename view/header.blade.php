@@ -12,8 +12,7 @@
                     class="relative z-20 flex w-full justify-between md:px-0 lg:w-max"
                   >
                     <a href="/" aria-label="logo" class="flex items-center space-x-2">
-                      <img src="{{ $header->image('image_1')->width(40)->height(30) }}" class="h-20">
-                      <img src="{{ $header->image('image_2')->width(40)->height(30) }}" class="h-20">
+                      <img src="{{ $header->image('image_1')->width(40)->height(20) }}" class="h-10">
                     </a>
 
                     <button
