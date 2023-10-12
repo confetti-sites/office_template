@@ -13,9 +13,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
     <body class="text-md overflow-x-hidden" :class="{ 'dark': dark }" x-data="data()">
-    @guest()
-        @include('view.under_construction')
-    @else()
+{{--    @guest()--}}
+{{--        @include('view.under_construction')--}}
+{{--    @else()--}}
         @include('view.header')
 
         @if(str_starts_with(request()->uri(), '/pricing'))
@@ -30,6 +30,6 @@
         @php($target = $footer->select('template')->fileInDirectories(['/view/footers/*.blade.php'])->default('/view/footers/footer.blade.php'))
 
         @include($target->get(), ['parent' => $target])
-    @endguest
+{{--    @endguest--}}
     </body>
 </html>

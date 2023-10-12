@@ -1,6 +1,8 @@
-<section class="bg-white dark:bg-gray-900 dark:text-white pt-20 px-4 mx-auto max-w-screen-xl lg:px-6">
-    <h2 class="mb-8 text-4xl tracking-tight font-extrabold">Frequently asked questions</h2>
+<section class="bg-white dark:bg-gray-900 dark:text-white pt-20 lg:pt-35 px-4 md:mx-8 lg:px-6">
+    <h2 class="mb-8 text-4xl tracking-tight font-extrabold md:text-center">Frequently asked questions</h2>
     <div class="grid pt-8 text-left border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
+        <div class="absolute -mt-[250px] -left-4 md:left-[150px] w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob "></div>
+        <div class="absolute -mt-[50px] left-20 md:left-[250px] w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
         <div>
             <div class="mb-10">
                 <h3 class="flex items-center mb-4 text-lg font-medium">

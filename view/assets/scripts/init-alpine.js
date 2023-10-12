@@ -1,15 +1,18 @@
 function data() {
     function getThemeFromLocalStorage() {
-      // if user already changed the theme, use it
-      if (window.localStorage.getItem('dark')) {
-        return JSON.parse(window.localStorage.getItem('dark'))
-      }
+      // For now, we do not support dark mode
+      return false;
 
-      // else return their preferences
-      return (
-        !!window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-      )
+      // // if user already changed the theme, use it
+      // if (window.localStorage.getItem('dark')) {
+      //   return JSON.parse(window.localStorage.getItem('dark'))
+      // }
+      //
+      // // else return their preferences
+      // return (
+      //   !!window.matchMedia &&
+      //   window.matchMedia('(prefers-color-scheme: dark)').matches
+      // )
     }
 
     function setThemeToLocalStorage(value) {
