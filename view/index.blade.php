@@ -27,7 +27,7 @@
         @endif
 
         @php($footer = section('footer'))
-        @php($target = $footer->select('template')->fileInDirectories(['/view/footers/*.blade.php'])->default('/view/footers/footer.blade.php'))
+        @php($target = $footer->select('template')->fileInDirectories(['/view/footers/*.blade.php'])->default('/view/footers/footer_small.blade.php'))
 
         @include($target->get(), ['parent' => $target])
 {{--    @endguest--}}
