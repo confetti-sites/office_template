@@ -18,7 +18,9 @@
 {{--    @else()--}}
         @include('view.header')
 
-        @if(str_starts_with(request()->uri(), '/pricing'))
+        @if(request()->uri() === '/waiting-list-step-2'))
+            @include('view.waiting-list-step-2')
+        @elseif(request()->uri() === '/pricing'))
             @include('view.pricing')
         @elseif(str_starts_with(request()->uri(), '/docs'))
             @include('view.docs')
@@ -27,9 +29,10 @@
         @endif
 
         @php($footer = section('footer'))
-        @php($target = $footer->select('template')->fileInDirectories(['/view/footers/*.blade.php'])->default('/view/footers/footer_small.blade.php'))
+        @php($target = $footer->select('template')->fileInDirectories(['/view/footers/*.blade.php'])->default('/view/footers/footer.blade.php'))
 
         @include($target->get(), ['parent' => $target])
 {{--    @endguest--}}
+        @stack('script_*')
     </body>
 </html>

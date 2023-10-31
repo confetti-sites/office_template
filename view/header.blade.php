@@ -4,29 +4,30 @@
               id="navbar"
               class=" relative inset-x-0"
             >
-              <div class="container">
+              <div>
                 <div
                   class="relative flex flex-wrap items-center justify-between gap-6 lg:gap-0 lg:py-4"
                 >
                   <div
                     class="relative z-20 flex w-full justify-between md:px-0 lg:w-max"
                   >
-                    <a href="/" aria-label="logo" class="flex items-center space-x-2">
-                      <img src="/view/assets/confetti_cms_logo.png" class="h-12">
+                    <a href="/" aria-label="logo" class="flex items-center space-x-2 p-2">
+                      <img src="/view/assets/confetti_cms_logo.png" class="h-10 pl-4">
+                      {!! $header->text('title')->min(1)->max(20)->default('Confetti CMS') !!}
                     </a>
 
                     <button
                       aria-label="humburger"
                       id="hamburger"
-                      class="relative -mr-6 p-6 lg:hidden"
+                      class="relative p-6 lg:hidden"
                     >
                       <div
                         aria-hidden="true"
-                        class="m-auto h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"
+                        class="m-auto h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300"
                       ></div>
                       <div
                         aria-hidden="true"
-                        class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 transition duration-300 dark:bg-gray-300"
+                        class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300"
                       ></div>
                     </button>
                   </div>
