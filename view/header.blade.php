@@ -6,7 +6,7 @@
             >
               <div>
                 <div
-                  class="relative flex flex-wrap items-center justify-between gap-6 gap-0 py-4"
+                  class="relative flex flex-wrap items-center justify-between"
                 >
                   <div
                     class="relative z-20 flex w-full justify-between px-0 w-max"
@@ -49,7 +49,7 @@
                         </li>
                       </ul>
                     </div>
-
+                    @guest
                     <div
                       class="ml-2 mr-4 flex w-full flex-col space-y-2 border-primary/10 dark:border-gray-700"
                     >
@@ -65,6 +65,7 @@
                         >
                       </a>
                     </div>
+                    @endguest
                   </div>
                 </div>
               </div>
