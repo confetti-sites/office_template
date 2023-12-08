@@ -32,7 +32,7 @@ return new class implements IteratorAggregate {
     )
     {
         $this->id  .= '~';
-        $this->key = ComponentStandard::keyFromId($this->id);
+        $this->key = ComponentStandard::componentKeyFromContentId($this->id);
 
         $items = $this->contentStore->findMany($this->id);
         if (count($items) === 0) {
