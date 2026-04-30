@@ -20,14 +20,12 @@
       // Key serves as a name for the environment
       // Common values: 'prod', test or 'dev', but it’s flexible
       // In teams, you can use your name for your personal development environment
-      name: 'local',
+      name: 'dev',
       // Determines the target code in the Dockerfile to run
       // - development (monitors code changes)
       // - production (optimized for speed)
       // For testing, use 'production' and set the name to 'test'
       stage: 'development',
-      // Options for local development (this is only used by the Confetti team)
-      local: true,
       options: {
         when_no_data_is_saved_show_fake_data: true,
         // Enable hot reload and show development hints
@@ -40,7 +38,7 @@
           // Do not change the name 'view' since it is connected to the view.Dockerfile
           name: 'view',
           hosts: [
-            'confetti-cms.localhost',
+            '__HOST__',
           ],
           paths: [
             '/',
@@ -49,7 +47,7 @@
         // For all api containers
         {
           hosts: [
-            'confetti-cms.localhost',
+            '__HOST__',
           ],
           paths: [
             // '__SERVICE__' will be replaced with the name of the container.
@@ -60,34 +58,6 @@
           ],
         },
       ],
-    },
-    // Development environment
-    {
-      name: 'dev',
-      stage: 'development',
-      options: {
-        when_no_data_is_saved_show_fake_data: false,
-        dev_tools: true,
-      },
-      containers: [
-        {
-          name: 'view',
-          hosts: [
-            'confetti-cms.com',
-          ],
-          paths: [
-            '/',
-          ],
-        },
-        {
-          hosts: [
-            'confetti-cms.com',
-          ],
-          paths: [
-            '/conf_api/__SERVICE__',
-          ],
-        },
-      ],
-    },
+    }
   ],
 }
