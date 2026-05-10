@@ -75,9 +75,9 @@ if (str_ends_with(request()->uri(), '-')) {
     @if(config('environment.options.dev_tools'))
     @pushonce('end_of_body_dev_tools')
         <script type="module" defer>
-            // With this script, the page will reload when a file is changed
-            // We use /website because the website also needs this
-            import {DevTools} from "/website/public/js/dev_tools.mjs";
+            // With this script, the page will reload when a file is changed.
+            // We use /website because the website also needs this.
+            import {DevTools} from "/website/public/mjs/dev_tools.mjs";
 
             DevTools.subscribeFileChanges(
                 (event) => {
@@ -97,6 +97,7 @@ if (str_ends_with(request()->uri(), '-')) {
                             title: event.message,
                         }
                     }));
+                    window.location.reload();
                 },
                 (message) => {
                     window.dispatchEvent(new CustomEvent('state', {

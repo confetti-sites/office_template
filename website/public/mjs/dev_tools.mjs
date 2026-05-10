@@ -12,25 +12,8 @@ export class DevTools {
         callbackFileProcessed,
         errorCallback
     ) {
-        console.info('Subscribed to file changes.');
-
         this.start('file_changed', callbackFileChanged, errorCallback);
         this.start('file_parsed', callbackFileProcessed, errorCallback);
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                console.info('Page hidden, stopping file change polling.');
-                this.stopAll();
-                return;
-            }
-
-            setTimeout(() => {
-                console.info('Page visible again, resuming file change polling.');
-
-                this.restart('file_changed', callbackFileChanged, errorCallback);
-                this.restart('file_parsed', callbackFileProcessed, errorCallback);
-            }, 300);
-        });
     }
 
     static ensureState(type) {

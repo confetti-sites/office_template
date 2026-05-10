@@ -21,10 +21,16 @@
 @php($target = newRoot(new \model\footer)->selectFile('template')->match(['/website/includes/footers/*.blade.php'])->required()->default('/website/includes/footers/footer_small.blade.php'))
 @include($target->getView(), ['model' => $target])
 
-{{-- Admin users can see the edit buttons when they are logged in, so they can easily edit the content of the page. --}}
-{{--@auth()--}}
-{{--@include('website.includes.edit_mode')--}}
-{{--@endauth--}}
+<div class=" flex items-center justify-center">
+    <p class="text-gray-500 italic font-serif font-body text-sm">
+        The admin user can choose between two Blade templates for the footer. In main.blade.php, you can see how to let the user select between multiple Blade templates. This approach can also be used to allow the user to choose images and icons.
+    </p>
+</div>
+
+{{-- Admin users can see the edit buttons when they press the fn key, so they can easily edit the content of the page. --}}
+@auth()
+@include('website.includes.edit_mode')
+@endauth
 @include('website.includes.dev_tools')
 @stack('end_of_body_*')
 

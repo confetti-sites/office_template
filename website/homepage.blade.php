@@ -1,15 +1,12 @@
 @php(newRoot(new \model\homepage))
-@section('head_title', 'Confetti CMS')
-@section('head_description', 'Confetti CMS lets you build your own white-label CMS with full control over your templates.')
+@section('head_title', 'Your homepage title, you can edit this in homepage.blade.php')
+@section('head_description', 'The description for the homepage.')
 @extends('website.layouts.main')
 
 @section('content')
     @include('website.includes.hero')
     @include('website.includes.usps')
-{{--    -- examples of admin --}}
-{{--    -- examples of different websites. Blogs / static websites --}}
-    @include('website.includes.compare')
-    @include('website.includes.steps')
+    @include('website.includes.blocks')
     @include('website.includes.newsletter')
     @include('website.includes.cta')
 @endsection

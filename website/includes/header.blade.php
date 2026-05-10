@@ -1,12 +1,14 @@
-<header class="lg:container lg:mx-auto z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100 w-full">
+@php($header = newRoot(new \model\homepage\header))
+<header class="js-edit:{{ $header->getId() }} lg:container lg:mx-auto z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100 w-full">
     <nav class="relative">
         <div class="flex items-center justify-between px-4 py-2">
             <!-- Logo Container -->
             <div id="logo" class="flex items-center p-2">
                 <a href="/" aria-label="logo" class="flex items-center space-x-4">
-                    <img src="/website/public/confetti_cms_logo.png" class="h-10 w-auto" width="288" height="166" alt="">
-                    <span class="text-xl" id="brand-title">Confetti CMS</span>
+                    {!! $header->image('logo')->widthPx(166)->getPicture(class: 'h-10 w-auto', alt: 'logo') !!}
+                    <span class="text-xl" id="brand-title">{{ $header->text('brand_title')->max(20) }}</span>
                 </a>
+
             </div>
             <div></div>
             <div class="flex justify-end  md:justify-end">
@@ -19,20 +21,19 @@
                 <!-- Navigation Links -->
                 <div class="js-menu hidden flex-col space-y-2 px-4 py-2 bg-white md:flex md:flex-row md:space-y-0 md:space-x-4 md:border-none md:py-0">
                     <a href="/" class="block md:hidden transition hover:text-primary px-4 py-2 md:py-2">Home</a>
-                    <a href="/pricing" class="block relative transition hover:text-primary px-4 py-2 md:py-2">Pricing</a>
-                    <a href="/docs/installation" class="block transition hover:text-primary px-4 py-2 md:py-2">Docs</a>
-                    <a href="https://github.com/confetti-cms/community/discussions" target="_blank" class="block transition hover:text-primary px-4 py-2 md:py-2">GitHub</a>
-                    @guest
-                        <a href="/waiting-list" class="relative ml-auto flex h-10 w-full items-center justify-center before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 px-4">
-                            <span class="relative text-sm font-semibold text-white">
-                                Join<span class="hidden sm:contents"> the Waitlist</span>
-                            </span>
-                        </a>
-                    @endguest
+                    <a href="/blogs" class="block relative transition hover:text-primary px-4 py-2 md:py-2">Blog</a>
+                    <a href="/admin" class="relative ml-auto flex h-10 w-full items-center justify-center before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 px-4">
+                        <span class="relative text-sm font-semibold text-white">
+                            @guest Login @else Admin @endguest
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
+    <p class="text-gray-500 italic font-serif font-body text-sm">
+        You can edit this HTML in header.blade.php
+    </p>
 </header>
 
 @pushonce('end_of_body_header')

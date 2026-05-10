@@ -16,4 +16,9 @@
             </div>
         </div>
     </div>
+    <div class=" flex items-center justify-center">
+        <p class="text-gray-500 italic font-serif font-body text-sm">
+            You can edit this HTML in usp.blade.php
+        </p>
+    </div>
 </div>

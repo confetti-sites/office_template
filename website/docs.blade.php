@@ -91,9 +91,9 @@
 
             @guest
                 @if (rand(0, 1) === 0)
-                    <!-- Display the waitlist link -->
-                    <a href="/waiting-list" class="relative ml-auto flex h-10 w-full mt-20 items-center justify-center before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 px-4">
-                        <span class="relative text-sm font-semibold text-white">Let's Join the Waitlist</span>
+                    <!-- Display the login link -->
+                    <a href="/login" class="relative ml-auto flex h-10 w-full mt-20 items-center justify-center before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 px-4">
+                        <span class="relative text-sm font-semibold text-white">Login</span>
                     </a>
                 @else
                     <!-- Display the newsletter div -->
@@ -132,7 +132,7 @@
         <!-- 404/Start page -->
         <div class="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pl-8 lg:pr-0 xl:px-16">
             <h1 class="text-3xl font-semibold text-gray-800">{{ $docs->text('start_page_title')->label('Start page title')->get() }}</h1>
-            <div class="mt-4 discussion text-gray-800">@include('pkg.confetti-cms.content.website.index', ['model' => $docs->content('start_page_content')->label('Start page content')])</div>
+            <div class="mt-4 discussion text-gray-800">@include('pkg.confetti-cms.content.blocks.index', ['model' => $docs->content('start_page_content')->label('Start page content')])</div>
         </div>
     @endif
 </div>

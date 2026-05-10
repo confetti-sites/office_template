@@ -19,7 +19,7 @@
 
         $accessToken = $contents['auth']['access_token'];
         setcookie('access_token', $accessToken, [
-            // Never expire around the same time (so the user wille see the login page at the beginning of the day)
+            // We want that the user will see the login page at the beginning of the day
             'expires' => time()+($hour*24*6)+($hour*12),
             'path' => '/',
         ]);

@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /admin/
+Disallow: /auth/callback/
 Disallow: /login/
 Disallow: /logout/
 Disallow: /reset-password/
@@ -12,4 +13,4 @@ Allow: /
 Crawl-delay: 10
 
 # No sitemap defined yet
-# Sitemap: https://confetti-cms.com/sitemap.xml
+# Sitemap: https://your-domain.com/sitemap.xml

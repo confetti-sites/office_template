@@ -38,7 +38,7 @@ class ImageComponent extends ComponentStandard
         // Get the ratio from decoration and calculate the height
         $ratioW = $component->getDecoration('ratio', 'width') ?? 4;
         $ratioH = $component->getDecoration('ratio', 'height') ?? 3;
-        $height = $width / $ratioW * $ratioH;
+        $height = round($width / $ratioW * $ratioH);
         $random = rand(0, 10000);
 
         return [
@@ -111,6 +111,14 @@ class ImageComponent extends ComponentStandard
             $height = $width / $ratio['width'] * $ratio['height'];
         } else {
             $height = '';
+        }
+
+        if (!empty($width)) {
+            $width = round($width);
+        }
+
+        if (!empty($height)) {
+            $height = round($height);
         }
 
         $data = $this->get();

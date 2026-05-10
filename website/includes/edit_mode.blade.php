@@ -6,11 +6,18 @@
              */
             document.querySelectorAll('[class^="js-edit:"]').forEach(el => {
                 const id = el.classList[0].split(':')[1];
-                const button = document.createElement('a');
-                button.href = '/admin' + id + '?redirect_url=' + window.location.href;
+                const button = document.createElement('div');
+                button.classList.add('js-button-wrapper');
 
-                // Open in a new tab
-                button.target = '_blank';
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    document.querySelectorAll('.js-button-wrapper').forEach(btn => {
+                        btn.style.display = 'none';
+                    });
+
+                    window.location.href = '/admin' + id;
+                });
 
                 // Edit icon
                 button.innerHTML = '' +
@@ -20,13 +27,16 @@
                 button.style.display = 'none';
                 el.insertBefore(button, el.firstChild);
 
-                // Show the button when hovered over the parent element
-                el.addEventListener('mouseenter', () => {
-                    button.style.display = 'block';
+                document.addEventListener('keydown', (e) => {
+                    if (e.altKey) {
+                        button.style.display = 'block';
+                    }
                 });
 
-                el.addEventListener('mouseleave', () => {
-                    button.style.display = 'none';
+                document.addEventListener('keyup', (e) => {
+                    if (!e.altKey) {
+                        button.style.display = 'none';
+                    }
                 });
             });
 

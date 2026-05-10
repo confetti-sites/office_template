@@ -301,8 +301,17 @@ export class Storage {
      * @return {boolean}
      */
     static handleRedirectUrl() {
-        // if redirect_url is set, redirect to that url
-        const redirectUrl = new URLSearchParams(window.location.search).get('redirect_url');
+        const params = new URLSearchParams(window.location.search);
+
+        // check for action_after_publish=close
+        const action = params.get('action_after_publish');
+        if (action === 'close') {
+            window.close();
+            return true;
+        }
+
+        // existing redirect logic
+        const redirectUrl = params.get('redirect_url');
         if (redirectUrl) {
             window.location.href = redirectUrl;
             return true;
